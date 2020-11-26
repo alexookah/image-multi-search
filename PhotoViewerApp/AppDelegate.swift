@@ -13,6 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        ImageSearchAPI.shared.getSearchResults(searchQuery: "haha") { (result: Result<ImagesResponse, ImageSearchAPI.APIServiceError>) in
+            switch result {
+                case .success(let movieResponse):
+                    print(movieResponse)
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
+        }
+        
         // Override point for customization after application launch.
         return true
     }
