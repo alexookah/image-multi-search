@@ -1,15 +1,15 @@
 //
-//  NetworkManager.swift
+//  APIService.swift
 //  PhotoViewerApp
 //
 //  Created by Alexandros Lykesas on 26/11/20.
 //
 
-import Foundation
+import UIKit
 
-class ImageSearchAPI {
+class APIService {
     
-    static let shared = ImageSearchAPI()
+    static let shared = APIService()
     
     private let urlSession = URLSession.shared
     
@@ -26,14 +26,14 @@ class ImageSearchAPI {
         case decodeError
     }
     
-    func getSearchResults<T: Decodable>(searchQuery: String,
+    func getSearchResults<T: Decodable>(query: String,
                                         completion: @escaping (Result<T, APIServiceError>) -> Void) {
         
         let pagingParameters = [
             "key": apikey,
             "cx": searchEngine,
             "searchType": searchType,
-            "q": searchQuery
+            "q": query
         ]
         
         // Build up the URL
@@ -68,4 +68,27 @@ class ImageSearchAPI {
         }.resume()
     }
     
+    func downloadImage(from url: URL, completion: @escaping (Result<UIImage, APIServiceError>) -> Void) {
+        
+        // Generate and execute the request
+        urlSession.dataTask(with: url) { (result) in
+            switch result {
+            case .success(let (response, data)):
+                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
+                    completion(.failure(.invalidResponse))
+                    return
+                }
+                if let imageData = UIImage(data: data) {
+                    completion(.success(imageData))
+                } else {
+                    completion(.failure(.decodeError))
+                }
+
+            case .failure(let error):
+                print(error)
+                completion(.failure(.apiError))
+            }
+        }.resume()
+    }
+
 }
