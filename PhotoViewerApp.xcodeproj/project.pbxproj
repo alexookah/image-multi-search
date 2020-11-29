@@ -22,6 +22,7 @@
 		B4D5FE8A2572D3440057C141 /* ResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE892572D3440057C141 /* ResultItem.swift */; };
 		B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */; };
 		B4D6C87E2573F8FA00DAEFC1 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B4D6C87D2573F8FA00DAEFC1 /* Nuke */; };
+		B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		B4D5FE862572D31C0057C141 /* ResultImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultImage.swift; sourceTree = "<group>"; };
 		B4D5FE892572D3440057C141 /* ResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultItem.swift; sourceTree = "<group>"; };
 		B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
+		B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */,
 				B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */,
+				B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
 				B404C05325704B42008B76FE /* URLSession.swift in Sources */,
+				B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */,
 				B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */,
 				B404C057257055DD008B76FE /* SearchResult.swift in Sources */,
 				B4A78461257026BB007CBB78 /* KeywordsManagerVC.swift in Sources */,

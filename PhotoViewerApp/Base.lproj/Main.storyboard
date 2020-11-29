@@ -32,22 +32,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBl-ab-B2D">
-                                <rect key="frame" x="183" y="433" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tvd-EA-G3I">
+                                <rect key="frame" x="0.0" y="765" width="414" height="131"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBl-ab-B2D">
+                                        <rect key="frame" x="183" y="0.0" width="48" height="30"/>
+                                        <state key="normal" title="Search"/>
+                                        <connections>
+                                            <segue destination="3Am-vF-PGn" kind="show" id="qOv-5K-qhK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="eBl-ab-B2D" firstAttribute="top" secondItem="Tvd-EA-G3I" secondAttribute="top" id="FWh-NR-mWO"/>
+                                    <constraint firstAttribute="height" constant="131" id="NPX-EB-DV2"/>
+                                    <constraint firstItem="eBl-ab-B2D" firstAttribute="centerX" secondItem="Tvd-EA-G3I" secondAttribute="centerX" id="kSU-kY-pap"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Qn-BX-AKh">
+                                <rect key="frame" x="0.0" y="140" width="414" height="617"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="8Qh-08-ibW" customClass="KeywordCell" customModule="PhotoViewerApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="50.333332061767578"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Qh-08-ibW" id="Ghk-LK-4zy">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFa-SC-8wV">
+                                                    <rect key="frame" x="8" y="8" width="398" height="34.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lFa-SC-8wV" firstAttribute="top" secondItem="Ghk-LK-4zy" secondAttribute="top" constant="8" id="2W9-zp-PNz"/>
+                                                <constraint firstAttribute="bottom" secondItem="lFa-SC-8wV" secondAttribute="bottom" constant="8" id="dfE-cX-fgW"/>
+                                                <constraint firstAttribute="trailing" secondItem="lFa-SC-8wV" secondAttribute="trailing" constant="8" id="g7d-cX-9XM"/>
+                                                <constraint firstItem="lFa-SC-8wV" firstAttribute="leading" secondItem="Ghk-LK-4zy" secondAttribute="leading" constant="8" id="jTn-R4-d28"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="lFa-SC-8wV" id="6TT-LU-4ZB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <segue destination="3Am-vF-PGn" kind="show" id="qOv-5K-qhK"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="599-LT-FEB"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5Qk-Xt-VGe"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eBl-ab-B2D" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="57q-N5-fal"/>
-                            <constraint firstItem="eBl-ab-B2D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eXQ-M7-SzV"/>
+                            <constraint firstAttribute="bottom" secondItem="Tvd-EA-G3I" secondAttribute="bottom" id="GJj-As-ks4"/>
+                            <constraint firstItem="4Qn-BX-AKh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JeE-K8-ChW"/>
+                            <constraint firstItem="4Qn-BX-AKh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="S9j-I1-gjh"/>
+                            <constraint firstItem="Tvd-EA-G3I" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Wpw-cQ-s2z"/>
+                            <constraint firstItem="Tvd-EA-G3I" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Zd1-Qx-B2K"/>
+                            <constraint firstItem="4Qn-BX-AKh" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cJC-CA-rLC"/>
+                            <constraint firstItem="Tvd-EA-G3I" firstAttribute="top" secondItem="4Qn-BX-AKh" secondAttribute="bottom" constant="8" symbolic="YES" id="x1O-L7-GTQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Photo Viewer App" id="X5w-Vx-dDX"/>
+                    <navigationItem key="navigationItem" title="Photo Viewer App" id="X5w-Vx-dDX">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="KjG-nH-3te">
+                            <connections>
+                                <action selector="leftButtonClicked:" destination="BYZ-38-t0r" id="3EH-pg-vIV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FIw-ZV-iPG">
+                            <connections>
+                                <action selector="rightButtonClicked:" destination="BYZ-38-t0r" id="jdC-Wp-lzr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="leftButton" destination="KjG-nH-3te" id="F72-y4-E2s"/>
+                        <outlet property="rightButton" destination="FIw-ZV-iPG" id="Ze1-2c-79g"/>
+                        <outlet property="tableView" destination="4Qn-BX-AKh" id="das-X1-WTt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

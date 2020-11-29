@@ -31,12 +31,8 @@ class PreviewImageSearchCell: UICollectionViewCell {
             ImageProcessors.Resize(size: image.bounds.size)
         ])
 
-        Nuke.loadImage(with: request, into: image) { [weak self] (_) in
+        Nuke.loadImage(with: request, into: image) { [weak self] _ in
             self?.activityIndicator.stopAnimating()
         }
-    }
-
-    @IBAction func buttonClicked(_ sender: Any) {
-        UIApplication.shared.open(URL(string: resultItem.link)!, options: [:], completionHandler: nil)
     }
 }
