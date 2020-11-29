@@ -8,22 +8,22 @@
 import UIKit
 
 class KeywordsManagerVC: UIViewController {
-        
+
     var searchResults: [SearchResult] = []
-    let keywords = ["cat", "car", ]//"missile", "human", "food"]
-    
+    let keywords = ["cat", "car" ]//"missile", "human", "food"]
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         searchImages()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? SearchResultsVC {
             viewController.searchResults = searchResults
         }
     }
-    
+
     func searchImages() {
         keywords.forEach({ keyword in
             APIService.shared.getSearchResults(query: keyword) { (result: Result<SearchResult,
@@ -40,4 +40,3 @@ class KeywordsManagerVC: UIViewController {
     }
 
 }
-
