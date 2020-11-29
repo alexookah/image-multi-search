@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,10 +18,10 @@
 		B4A78469257026BC007CBB78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A78467257026BC007CBB78 /* LaunchScreen.storyboard */; };
 		B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */; };
 		B4D5FE7C2572CAC90057C141 /* PreviewImageSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */; };
-		B4D5FE802572CEEF0057C141 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE7F2572CEEF0057C141 /* UIImageView.swift */; };
 		B4D5FE872572D31C0057C141 /* ResultImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE862572D31C0057C141 /* ResultImage.swift */; };
 		B4D5FE8A2572D3440057C141 /* ResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE892572D3440057C141 /* ResultItem.swift */; };
 		B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */; };
+		B4D6C87E2573F8FA00DAEFC1 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B4D6C87D2573F8FA00DAEFC1 /* Nuke */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,6 @@
 		B4A7846A257026BC007CBB78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageSearchCell.swift; sourceTree = "<group>"; };
 		B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewImageSearchCell.xib; sourceTree = "<group>"; };
-		B4D5FE7F2572CEEF0057C141 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		B4D5FE862572D31C0057C141 /* ResultImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultImage.swift; sourceTree = "<group>"; };
 		B4D5FE892572D3440057C141 /* ResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultItem.swift; sourceTree = "<group>"; };
 		B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4D6C87E2573F8FA00DAEFC1 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				B404C05225704B42008B76FE /* URLSession.swift */,
-				B4D5FE7F2572CEEF0057C141 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -128,8 +127,8 @@
 		B4D5FE7625728D800057C141 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */,
 				B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */,
+				B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +150,9 @@
 			dependencies = (
 			);
 			name = PhotoViewerApp;
+			packageProductDependencies = (
+				B4D6C87D2573F8FA00DAEFC1 /* Nuke */,
+			);
 			productName = PhotoViewerApp;
 			productReference = B4A78459257026BB007CBB78 /* PhotoViewerApp.app */;
 			productType = "com.apple.product-type.application";
@@ -178,6 +180,9 @@
 				Base,
 			);
 			mainGroup = B4A78450257026BB007CBB78;
+			packageReferences = (
+				B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = B4A7845A257026BB007CBB78 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4D5FE802572CEEF0057C141 /* UIImageView.swift in Sources */,
 				B4D5FE8A2572D3440057C141 /* ResultItem.swift in Sources */,
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
@@ -439,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4D6C87D2573F8FA00DAEFC1 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4A78451257026BB007CBB78 /* Project object */;
 }

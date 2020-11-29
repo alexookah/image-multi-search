@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum APIServiceError: Error {
+    case apiError
+    case invalidURL
+    case invalidResponse
+    case decodeError
+}
+
 class APIService {
 
     static let shared = APIService()
@@ -19,13 +26,6 @@ class APIService {
     private let searchEngine = "017901247231445677654:zwad8gw42fj"
     private let searchType = "image"
 
-    enum APIServiceError: Error {
-        case apiError
-        case invalidURL
-        case invalidResponse
-        case decodeError
-    }
-
     func getSearchResults<T: Decodable>(query: String,
                                         completion: @escaping (Result<T, APIServiceError>) -> Void) {
 
@@ -33,7 +33,8 @@ class APIService {
             "key": apikey,
             "cx": searchEngine,
             "searchType": searchType,
-            "q": query
+            "q": query,
+            "ImgSize": "IMG_SIZE_MEDIUM"
         ]
 
         // Build up the URL
@@ -61,29 +62,6 @@ class APIService {
                 } catch {
                     completion(.failure(.decodeError))
                 }
-            case .failure(let error):
-                print(error)
-                completion(.failure(.apiError))
-            }
-        }.resume()
-    }
-
-    func downloadImage(from url: URL, completion: @escaping (Result<UIImage, APIServiceError>) -> Void) {
-
-        // Generate and execute the request
-        urlSession.dataTask(with: url) { (result) in
-            switch result {
-            case .success(let (response, data)):
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
-                    completion(.failure(.invalidResponse))
-                    return
-                }
-                if let imageData = UIImage(data: data) {
-                    completion(.success(imageData))
-                } else {
-                    completion(.failure(.decodeError))
-                }
-
             case .failure(let error):
                 print(error)
                 completion(.failure(.apiError))

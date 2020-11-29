@@ -53,7 +53,7 @@ class SearchResultsVC: UIViewController {
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             let searchResult = self.searchResults[sectionIndex]
-            return self.createFeaturedSection(using: searchResult)
+            return self.createImageResultsSection(using: searchResult)
         }
 
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -62,7 +62,7 @@ class SearchResultsVC: UIViewController {
         return layout
     }
 
-    func createFeaturedSection(using section: SearchResult) -> NSCollectionLayoutSection {
+    func createImageResultsSection(using section: SearchResult) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
 

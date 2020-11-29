@@ -10,7 +10,17 @@ import UIKit
 class KeywordsManagerVC: UIViewController {
 
     var searchResults: [SearchResult] = []
-    let keywords = ["cat", "car" ]//"missile", "human", "food"]
+    let keywords = [
+        "boho interior design",
+        "animal photography portait",
+        "illustration",
+        "ui design",
+        "fashion photography",
+        "flat lay photography",
+        "minimalist typography",
+        "library",
+        "plants"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +36,7 @@ class KeywordsManagerVC: UIViewController {
 
     func searchImages() {
         keywords.forEach({ keyword in
-            APIService.shared.getSearchResults(query: keyword) { (result: Result<SearchResult,
-                                                                                 APIService.APIServiceError>) in
+            APIService.shared.getSearchResults(query: keyword) { (result: Result<SearchResult, APIServiceError>) in
                 switch result {
                 case .success(let searchResult):
                     self.searchResults.append(searchResult)

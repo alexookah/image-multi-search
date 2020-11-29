@@ -16,9 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="263" height="168"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7QK-bx-WIY">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7QK-bx-WIY">
                         <rect key="frame" x="8" y="8" width="247" height="152"/>
                     </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="GQr-1a-Pi4">
+                        <rect key="frame" x="121.5" y="74" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -26,10 +29,13 @@
                 <constraint firstAttribute="trailing" secondItem="7QK-bx-WIY" secondAttribute="trailing" constant="8" id="3Qt-Jy-3Qh"/>
                 <constraint firstAttribute="bottom" secondItem="7QK-bx-WIY" secondAttribute="bottom" constant="8" id="6Is-KD-RGk"/>
                 <constraint firstItem="7QK-bx-WIY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="BV0-y2-sCj"/>
+                <constraint firstItem="GQr-1a-Pi4" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="HYm-M1-sJa"/>
                 <constraint firstItem="7QK-bx-WIY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="eyj-km-q3r"/>
+                <constraint firstItem="GQr-1a-Pi4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="wmy-6W-Nyg"/>
             </constraints>
             <size key="customSize" width="263" height="168"/>
             <connections>
+                <outlet property="activityIndicator" destination="GQr-1a-Pi4" id="jmg-SX-EF1"/>
                 <outlet property="image" destination="7QK-bx-WIY" id="XhL-3y-cPA"/>
             </connections>
             <point key="canvasLocation" x="186.23188405797103" y="141.96428571428569"/>

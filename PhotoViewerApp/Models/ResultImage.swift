@@ -5,8 +5,6 @@
 //  Created by Alexandros Lykesas on 28/11/20.
 //
 
-import Foundation
-
 struct ResultImage: Decodable, Hashable {
     let width: Int
     let height: Int
