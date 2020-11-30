@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4A78458257026BB007CBB78"
-               BuildableName = "PhotoViewerApp.app"
-               BlueprintName = "PhotoViewerApp"
-               ReferencedContainer = "container:PhotoViewerApp.xcodeproj">
+               BuildableName = "image Multi Search.app"
+               BlueprintName = "image Multi Search"
+               ReferencedContainer = "container:image Multi Search.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B4A78458257026BB007CBB78"
-            BuildableName = "PhotoViewerApp.app"
-            BlueprintName = "PhotoViewerApp"
-            ReferencedContainer = "container:PhotoViewerApp.xcodeproj">
+            BuildableName = "image Multi Search.app"
+            BlueprintName = "image Multi Search"
+            ReferencedContainer = "container:image Multi Search.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B4A78458257026BB007CBB78"
-            BuildableName = "PhotoViewerApp.app"
-            BlueprintName = "PhotoViewerApp"
-            ReferencedContainer = "container:PhotoViewerApp.xcodeproj">
+            BuildableName = "image Multi Search.app"
+            BlueprintName = "image Multi Search"
+            ReferencedContainer = "container:image Multi Search.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

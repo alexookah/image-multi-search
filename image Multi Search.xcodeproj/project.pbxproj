@@ -29,7 +29,7 @@
 		B404C04A257038B2008B76FE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		B404C05225704B42008B76FE /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		B404C056257055DD008B76FE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		B4A78459257026BB007CBB78 /* PhotoViewerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4A78459257026BB007CBB78 /* image Multi Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "image Multi Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A7845C257026BB007CBB78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4A7845E257026BB007CBB78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4A78460257026BB007CBB78 /* KeywordsManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsManagerVC.swift; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		B4A78450257026BB007CBB78 = {
 			isa = PBXGroup;
 			children = (
-				B4A7845B257026BB007CBB78 /* PhotoViewerApp */,
+				B4A7845B257026BB007CBB78 /* Image Multi Search */,
 				B4A7845A257026BB007CBB78 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,12 +103,12 @@
 		B4A7845A257026BB007CBB78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B4A78459257026BB007CBB78 /* PhotoViewerApp.app */,
+				B4A78459257026BB007CBB78 /* image Multi Search.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B4A7845B257026BB007CBB78 /* PhotoViewerApp */ = {
+		B4A7845B257026BB007CBB78 /* Image Multi Search */ = {
 			isa = PBXGroup;
 			children = (
 				B4D5FE7625728D800057C141 /* Views */,
@@ -123,7 +123,7 @@
 				B4A78467257026BC007CBB78 /* LaunchScreen.storyboard */,
 				B4A7846A257026BC007CBB78 /* Info.plist */,
 			);
-			path = PhotoViewerApp;
+			path = "Image Multi Search";
 			sourceTree = "<group>";
 		};
 		B4D5FE7625728D800057C141 /* Views */ = {
@@ -139,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B4A78458257026BB007CBB78 /* PhotoViewerApp */ = {
+		B4A78458257026BB007CBB78 /* image Multi Search */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B4A7846D257026BC007CBB78 /* Build configuration list for PBXNativeTarget "PhotoViewerApp" */;
+			buildConfigurationList = B4A7846D257026BC007CBB78 /* Build configuration list for PBXNativeTarget "image Multi Search" */;
 			buildPhases = (
 				B4A78455257026BB007CBB78 /* Sources */,
 				B4A78456257026BB007CBB78 /* Frameworks */,
@@ -152,12 +152,12 @@
 			);
 			dependencies = (
 			);
-			name = PhotoViewerApp;
+			name = "image Multi Search";
 			packageProductDependencies = (
 				B4D6C87D2573F8FA00DAEFC1 /* Nuke */,
 			);
 			productName = PhotoViewerApp;
-			productReference = B4A78459257026BB007CBB78 /* PhotoViewerApp.app */;
+			productReference = B4A78459257026BB007CBB78 /* image Multi Search.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -174,7 +174,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B4A78454257026BB007CBB78 /* Build configuration list for PBXProject "PhotoViewerApp" */;
+			buildConfigurationList = B4A78454257026BB007CBB78 /* Build configuration list for PBXProject "image Multi Search" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -190,7 +190,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B4A78458257026BB007CBB78 /* PhotoViewerApp */,
+				B4A78458257026BB007CBB78 /* image Multi Search */,
 			);
 		};
 /* End PBXProject section */
@@ -399,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexlykesas.PhotoViewerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexlykesas.image-multi-search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -418,7 +418,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexlykesas.PhotoViewerApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.alexlykesas.image-multi-search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,7 +428,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B4A78454257026BB007CBB78 /* Build configuration list for PBXProject "PhotoViewerApp" */ = {
+		B4A78454257026BB007CBB78 /* Build configuration list for PBXProject "image Multi Search" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4A7846B257026BC007CBB78 /* Debug */,
@@ -437,7 +437,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B4A7846D257026BC007CBB78 /* Build configuration list for PBXNativeTarget "PhotoViewerApp" */ = {
+		B4A7846D257026BC007CBB78 /* Build configuration list for PBXNativeTarget "image Multi Search" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B4A7846E257026BC007CBB78 /* Debug */,
