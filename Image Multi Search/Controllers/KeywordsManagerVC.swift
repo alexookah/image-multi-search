@@ -22,7 +22,7 @@ class KeywordsManagerVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? SearchResultsVC {
-//            viewController.searchResults = searchResults
+            viewController.keywordsViewModel = keywordsViewModel
         }
     }
 
@@ -68,7 +68,8 @@ extension KeywordsManagerVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordCell.reuseIdentifier,
                                                        for: indexPath) as? KeywordCell else { return UITableViewCell() }
 
-        cell.textField.text = keywordsViewModel.keywords[indexPath.row].text
+        let keyword = keywordsViewModel.keywords[indexPath.row]
+        cell.config(keyword: keyword, keywordsViewModel: keywordsViewModel)
         return cell
     }
 

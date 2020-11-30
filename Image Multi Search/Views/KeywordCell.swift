@@ -6,22 +6,71 @@
 //
 
 import UIKit
+import Combine
 
 class KeywordCell: UITableViewCell {
 
     static let reuseIdentifier: String = "KeywordCell"
 
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var statusImage: UIImageView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var cancellables = Set<AnyCancellable>()
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cancellables.forEach { $0.cancel() }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    func config(keyword: Keyword, keywordsViewModel: KeywordsViewModel) {
+        textField.text = keyword.text
 
-        // Configure the view for the selected state
+        observeTextFieldChanges(keyword: keyword)
+        observeSearchResultStatus(keyword: keyword)
+    }
+
+    func observeTextFieldChanges(keyword: Keyword) {
+        let textFieldPublisher = NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: textField)
+            .map({ ($0.object as? UITextField)?.text })
+
+        textFieldPublisher
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { value in
+                keyword.text = value ?? ""
+                print("UITextField.text changed to: \(value ?? "")")
+            })
+            .store(in: &cancellables)
+    }
+
+    func observeSearchResultStatus(keyword: Keyword) {
+        keyword.searchResultStatusPublisher
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { value in
+                print("search result status: ", value)
+                switch value {
+                case .loading:
+                    self.showOrHideActivityIndicator(shouldShow: true)
+                    self.activityIndicator.startAnimating()
+                case .success:
+                    self.showOrHideActivityIndicator(shouldShow: false)
+                    self.statusImage.image = UIImage(systemName: "checkmark.circle")
+                case .failed:
+                    self.showOrHideActivityIndicator(shouldShow: false)
+                    self.statusImage.image = UIImage(systemName: "xmark.circle")
+                case .none:
+                    self.statusImage.isHidden = true
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    func showOrHideActivityIndicator(shouldShow: Bool) {
+        statusImage.isHidden = shouldShow
+        shouldShow ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
     }
 
 }

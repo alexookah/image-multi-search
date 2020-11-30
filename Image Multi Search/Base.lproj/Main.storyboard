@@ -27,7 +27,7 @@
         <!--Image Multi Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="KeywordsManagerVC" customModule="image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="KeywordsManagerVC" customModule="Image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,27 +53,44 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Qn-BX-AKh">
                                 <rect key="frame" x="0.0" y="140" width="414" height="617"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="8Qh-08-ibW" customClass="KeywordCell" customModule="image_Multi_Search" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="8Qh-08-ibW" customClass="KeywordCell" customModule="Image_Multi_Search" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Qh-08-ibW" id="Ghk-LK-4zy">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFa-SC-8wV">
-                                                    <rect key="frame" x="8" y="8" width="398" height="34.333333333333336"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a keyword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lFa-SC-8wV">
+                                                    <rect key="frame" x="8" y="8" width="350" height="34.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QUG-75-Zjj">
+                                                    <rect key="frame" x="374" y="13.333333333333336" width="24" height="24"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="QUG-75-Zjj" secondAttribute="height" multiplier="1:1" id="CBE-cY-x8b"/>
+                                                        <constraint firstAttribute="width" constant="24" id="UQh-AQ-bkW"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="VvE-A4-Wln">
+                                                    <rect key="frame" x="376" y="15.333333333333336" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lFa-SC-8wV" firstAttribute="top" secondItem="Ghk-LK-4zy" secondAttribute="top" constant="8" id="2W9-zp-PNz"/>
+                                                <constraint firstItem="QUG-75-Zjj" firstAttribute="centerY" secondItem="Ghk-LK-4zy" secondAttribute="centerY" id="4OK-24-WGo"/>
+                                                <constraint firstAttribute="trailing" secondItem="QUG-75-Zjj" secondAttribute="trailing" constant="16" id="WoR-s0-0cd"/>
+                                                <constraint firstItem="VvE-A4-Wln" firstAttribute="centerY" secondItem="QUG-75-Zjj" secondAttribute="centerY" id="bqg-d3-4l6"/>
+                                                <constraint firstItem="QUG-75-Zjj" firstAttribute="leading" secondItem="lFa-SC-8wV" secondAttribute="trailing" constant="16" id="d85-WI-ZKJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="lFa-SC-8wV" secondAttribute="bottom" constant="8" id="dfE-cX-fgW"/>
-                                                <constraint firstAttribute="trailing" secondItem="lFa-SC-8wV" secondAttribute="trailing" constant="8" id="g7d-cX-9XM"/>
                                                 <constraint firstItem="lFa-SC-8wV" firstAttribute="leading" secondItem="Ghk-LK-4zy" secondAttribute="leading" constant="8" id="jTn-R4-d28"/>
+                                                <constraint firstItem="VvE-A4-Wln" firstAttribute="centerX" secondItem="QUG-75-Zjj" secondAttribute="centerX" id="wap-GL-Glm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="VvE-A4-Wln" id="6Mh-hr-Ccr"/>
+                                            <outlet property="statusImage" destination="QUG-75-Zjj" id="IBO-ET-pxO"/>
                                             <outlet property="textField" destination="lFa-SC-8wV" id="6TT-LU-4ZB"/>
                                         </connections>
                                     </tableViewCell>
@@ -121,7 +138,7 @@
         <!--Search Results-->
         <scene sceneID="JhH-Nb-I0p">
             <objects>
-                <viewController id="3Am-vF-PGn" customClass="SearchResultsVC" customModule="image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Am-vF-PGn" customClass="SearchResultsVC" customModule="Image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HjI-a1-mrN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

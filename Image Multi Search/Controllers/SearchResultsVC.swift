@@ -12,9 +12,9 @@ class SearchResultsVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var dataSource: UICollectionViewDiffableDataSource<SearchResult, ResultItem>?
+    var dataSource: UICollectionViewDiffableDataSource<Keyword, ResultItem>?
 
-    var searchResults: [SearchResult] = []
+    var keywordsViewModel: KeywordsViewModel!
 
     let preheater = ImagePreheater()
 
@@ -32,7 +32,7 @@ class SearchResultsVC: UIViewController {
 
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource
-        <SearchResult, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
+        <Keyword, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewImageSearchCell.reuseIdentifier,
                                                           for: indexPath) as? PreviewImageSearchCell
@@ -43,11 +43,12 @@ class SearchResultsVC: UIViewController {
 
     func loadData() {
 
-        var snapshot = NSDiffableDataSourceSnapshot<SearchResult, ResultItem>()
-        snapshot.appendSections(self.searchResults)
+        var snapshot = NSDiffableDataSourceSnapshot<Keyword, ResultItem>()
+        snapshot.appendSections(keywordsViewModel.keywords)
 
-        for searchResult in self.searchResults {
-            snapshot.appendItems(searchResult.items, toSection: searchResult)
+        for keyword in keywordsViewModel.keywords {
+            guard let searchResult = keyword.searchResult else { continue }
+            snapshot.appendItems(searchResult.items, toSection: keyword)
         }
 
         dataSource?.apply(snapshot)
@@ -55,8 +56,8 @@ class SearchResultsVC: UIViewController {
 
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let searchResult = self.searchResults[sectionIndex]
-            return self.createImageResultsSection(using: searchResult)
+            guard self.keywordsViewModel.keywords[sectionIndex].searchResult != nil else { return nil}
+            return self.createImageResultsSection(using: self.keywordsViewModel.keywords[sectionIndex])
         }
 
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -65,7 +66,7 @@ class SearchResultsVC: UIViewController {
         return layout
     }
 
-    func createImageResultsSection(using section: SearchResult) -> NSCollectionLayoutSection {
+    func createImageResultsSection(using section: Keyword) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
 
@@ -88,15 +89,15 @@ class SearchResultsVC: UIViewController {
 extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
 
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
-        preheater.startPreheating(with: urls)
-        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
+//        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
+//        preheater.startPreheating(with: urls)
+//        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
-        preheater.stopPreheating(with: urls)
-        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
+//        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
+//        preheater.stopPreheating(with: urls)
+//        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     private func stringForIndexPaths(_ indexPaths: [IndexPath]) -> String {

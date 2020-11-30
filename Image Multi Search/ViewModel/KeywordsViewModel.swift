@@ -25,12 +25,7 @@ class KeywordsViewModel {
     var keywords: [Keyword] = []
 
     init() {
-
-        words.forEach({ word in
-            let test = Keyword(text: word)
-            keywords.append(test)
-            print(test)
-        })
+        words.forEach({ word in keywords.append(Keyword(text: word)) })
+        keywords.append(Keyword(text: ""))
     }
-
 }
