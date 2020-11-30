@@ -9,18 +9,7 @@ import UIKit
 
 class KeywordsManagerVC: UIViewController {
 
-    var searchResults: [SearchResult] = []
-    var keywords = [
-        "boho interior design",
-        "animal photography portait",
-        "illustration",
-        "ui design",
-        "fashion photography",
-        "flat lay photography",
-        "minimalist typography",
-        "library",
-        "plants"
-    ]
+    let keywordsViewModel = KeywordsViewModel()
 
     @IBOutlet weak var leftButton: UIBarButtonItem!
     @IBOutlet weak var rightButton: UIBarButtonItem!
@@ -29,37 +18,20 @@ class KeywordsManagerVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchImages()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? SearchResultsVC {
-            viewController.searchResults = searchResults
+//            viewController.searchResults = searchResults
         }
-    }
-
-    func searchImages() {
-        keywords.forEach({ keyword in
-            APIService.shared.getSearchResults(query: keyword) { (result: Result<SearchResult, APIServiceError>) in
-                switch result {
-                case .success(let searchResult):
-                    self.searchResults.append(searchResult)
-                    print(searchResult)
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-        })
     }
 
     @IBAction func rightButtonClicked(_ sender: UIBarButtonItem) {
 
         if tableView.isEditing {
-            self.removeRows(indexPathsToRemove: tableView.indexPathsForSelectedRows ?? [])
+            removeRows(indexPathsToRemove: tableView.indexPathsForSelectedRows ?? [])
         } else {
-            let newIndexPath = IndexPath(row: keywords.count, section: 0)
-            keywords.append("new search added")
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            addRow()
         }
     }
 
@@ -83,20 +55,20 @@ class KeywordsManagerVC: UIViewController {
 
 extension KeywordsManagerVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return keywords.count
+        return keywordsViewModel.keywords.count
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedObject = keywords[sourceIndexPath.row]
-        keywords.remove(at: sourceIndexPath.row)
-        keywords.insert(movedObject, at: destinationIndexPath.row)
+        let movedObject = keywordsViewModel.keywords[sourceIndexPath.row]
+        keywordsViewModel.keywords.remove(at: sourceIndexPath.row)
+        keywordsViewModel.keywords.insert(movedObject, at: destinationIndexPath.row)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordCell.reuseIdentifier,
                                                        for: indexPath) as? KeywordCell else { return UITableViewCell() }
 
-        cell.textField.text = keywords[indexPath.row]
+        cell.textField.text = keywordsViewModel.keywords[indexPath.row].text
         return cell
     }
 
@@ -122,8 +94,14 @@ extension KeywordsManagerVC: UITableViewDelegate {
         }
     }
 
-    func removeRows(indexPathsToRemove: [IndexPath]) {
-        indexPathsToRemove.sorted(by: >).forEach({ self.keywords.remove(at: $0.row) })
+    private func removeRows(indexPathsToRemove: [IndexPath]) {
+        indexPathsToRemove.sorted(by: >).forEach({ self.keywordsViewModel.keywords.remove(at: $0.row) })
         self.tableView.deleteRows(at: indexPathsToRemove, with: .fade)
+    }
+
+    private func addRow() {
+        let newIndexPath = IndexPath(row: keywordsViewModel.keywords.count, section: 0)
+        keywordsViewModel.keywords.append(Keyword(text: ""))
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
 }

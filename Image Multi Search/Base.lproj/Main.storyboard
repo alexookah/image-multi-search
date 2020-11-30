@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-668" y="86"/>
         </scene>
-        <!--Photo Viewer App-->
+        <!--Image Multi Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="KeywordsManagerVC" customModule="PhotoViewerApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="KeywordsManagerVC" customModule="image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Qn-BX-AKh">
                                 <rect key="frame" x="0.0" y="140" width="414" height="617"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="8Qh-08-ibW" customClass="KeywordCell" customModule="PhotoViewerApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="8Qh-08-ibW" customClass="KeywordCell" customModule="image_Multi_Search" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Qh-08-ibW" id="Ghk-LK-4zy">
@@ -96,7 +96,7 @@
                             <constraint firstItem="Tvd-EA-G3I" firstAttribute="top" secondItem="4Qn-BX-AKh" secondAttribute="bottom" constant="8" symbolic="YES" id="x1O-L7-GTQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Photo Viewer App" id="X5w-Vx-dDX">
+                    <navigationItem key="navigationItem" title="Image Multi Search" id="X5w-Vx-dDX">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="KjG-nH-3te">
                             <connections>
                                 <action selector="leftButtonClicked:" destination="BYZ-38-t0r" id="3EH-pg-vIV"/>
@@ -121,7 +121,7 @@
         <!--Search Results-->
         <scene sceneID="JhH-Nb-I0p">
             <objects>
-                <viewController id="3Am-vF-PGn" customClass="SearchResultsVC" customModule="PhotoViewerApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Am-vF-PGn" customClass="SearchResultsVC" customModule="image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HjI-a1-mrN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
