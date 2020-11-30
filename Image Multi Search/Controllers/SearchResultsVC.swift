@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class SearchResultsVC: UIViewController {
 
@@ -14,6 +15,8 @@ class SearchResultsVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<SearchResult, ResultItem>?
 
     var searchResults: [SearchResult] = []
+
+    let preheater = ImagePreheater()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,4 +81,31 @@ class SearchResultsVC: UIViewController {
         return layoutSection
     }
 
+}
+
+// MARK: UICollectionViewDataSourcePrefetching
+
+extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
+
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
+        preheater.startPreheating(with: urls)
+        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
+        preheater.stopPreheating(with: urls)
+        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
+    }
+
+    private func stringForIndexPaths(_ indexPaths: [IndexPath]) -> String {
+        guard indexPaths.count > 0 else {
+            return "[]"
+        }
+        let items = indexPaths
+            .map { return "\(($0 as NSIndexPath).item)" }
+            .joined(separator: " ")
+        return "[\(items)]"
+    }
 }
