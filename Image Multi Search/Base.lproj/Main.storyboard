@@ -100,6 +100,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
+                                        <action selector="searchButtonClicked:" destination="Gys-Gk-UQu" eventType="touchUpInside" id="BOl-c5-bk8"/>
                                         <segue destination="3Am-vF-PGn" kind="show" id="zWB-D5-oiJ"/>
                                     </connections>
                                 </button>

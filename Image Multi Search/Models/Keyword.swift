@@ -10,6 +10,7 @@ import Combine
 
 enum SearchResultStatus {
     case none
+    case typing
     case loading
     case success
     case failed
@@ -25,6 +26,7 @@ class Keyword {
     }
 
     var searchResult: SearchResult?
+    var apiStatus: SearchResultStatus = .none
 
     let textPublisher = CurrentValueSubject<String, Never>("")
     let searchResultStatusPublisher = CurrentValueSubject<SearchResultStatus, Never>(.none)
@@ -45,13 +47,24 @@ class Keyword {
             .handleEvents(receiveOutput: { value in
                 if value.isEmpty {
                     self.searchResultStatusPublisher.send(.none)
-                } else {
+                } else if self.apiStatus == .none {
                     self.searchResultStatusPublisher.send(.loading)
+                } else {
+                    self.searchResultStatusPublisher.send(.typing)
                 }
             })
             .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
             .filter({ !$0.isEmpty })
-            .removeDuplicates()
+            .removeDuplicates { prev, current in
+                if prev == current {
+                    self.searchResultStatusPublisher.send(self.apiStatus)
+                }
+                if prev == current && self.apiStatus == .failed {
+                    return false
+                } else {
+                    return prev == current
+                }
+            }
             .receive(on: RunLoop.main)
             .sink { value in
                 print("new query: ", value)
@@ -70,9 +83,11 @@ class Keyword {
                 switch completion {
                 case .failure(let error):
                     print("ERROR:", error)
+                    self?.apiStatus = .failed
                     self?.searchResultStatusPublisher.send(.failed)
                 case .finished:
                     print("finished:")
+                    self?.apiStatus = .success
                     self?.searchResultStatusPublisher.send(.success)
                 }
             }, receiveValue: { [weak self] searchResult in

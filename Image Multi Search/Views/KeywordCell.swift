@@ -51,6 +51,12 @@ class KeywordCell: UITableViewCell {
             .sink { value in
                 print("search result status: ", value)
                 switch value {
+                case .none:
+                    self.activityIndicator.stopAnimating()
+                    self.statusImage.isHidden = true
+                case .typing:
+                    self.activityIndicator.stopAnimating()
+                    self.statusImage.image = UIImage(systemName: "ellipsis")
                 case .loading:
                     self.showOrHideActivityIndicator(shouldShow: true)
                     self.activityIndicator.startAnimating()
@@ -60,10 +66,8 @@ class KeywordCell: UITableViewCell {
                 case .failed:
                     self.showOrHideActivityIndicator(shouldShow: false)
                     self.statusImage.image = UIImage(systemName: "xmark.circle")
-                case .none:
-                    self.activityIndicator.stopAnimating()
-                    self.statusImage.isHidden = true
                 }
+
             }
             .store(in: &cancellables)
     }
