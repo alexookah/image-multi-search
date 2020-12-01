@@ -46,30 +46,34 @@ class KeywordCell: UITableViewCell {
                 switch value {
                 case .none:
                     self.activityIndicator.stopAnimating()
-                    self.statusImage.isHidden = true
-                case .typing:
-                    self.statusImage.image = UIImage(systemName: "ellipsis")
-                    self.showOrHideActivityIndicator(shouldShow: false)
-                case .loading:
-                    self.showOrHideActivityIndicator(shouldShow: true)
-                case .success:
-                    self.statusImage.image = UIImage(systemName: "checkmark.circle")
-                    self.showOrHideActivityIndicator(shouldShow: false)
-                case .failed:
-                    self.statusImage.image = UIImage(systemName: "exclamationmark.triangle")
-                    self.showOrHideActivityIndicator(shouldShow: false)
-                case .noItems:
-                    self.statusImage.image = UIImage(systemName: "xmark.circle")
-                    self.showOrHideActivityIndicator(shouldShow: false)
-                }
+                    self.setStatusImage(systemName: nil)
 
+                case .loading:
+                    self.activityIndicator.startAnimating()
+                    self.setStatusImage(systemName: nil)
+
+                case .typing:
+                    self.setStatusImage(systemName: "ellipsis")
+                case .success:
+                    self.setStatusImage(systemName: "checkmark.circle")
+                case .failed:
+                    self.setStatusImage(systemName: "exclamationmark.triangle")
+                case .noItems:
+                    self.setStatusImage(systemName: "xmark.circle")
+                }
             }
             .store(in: &cancellables)
         }
 
-    func showOrHideActivityIndicator(shouldShow: Bool) {
-        statusImage.isHidden = shouldShow
-        shouldShow ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+    func setStatusImage(systemName: String?) {
+
+        if let systemName = systemName {
+            statusImage.isHidden = false
+            activityIndicator.stopAnimating()
+            statusImage.image = UIImage(systemName: systemName)
+        } else {
+            statusImage.isHidden = true
+        }
     }
 
 }
