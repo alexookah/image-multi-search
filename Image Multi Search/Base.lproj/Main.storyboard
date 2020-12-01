@@ -39,6 +39,7 @@
                                         <rect key="frame" x="183" y="0.0" width="48" height="30"/>
                                         <state key="normal" title="Search"/>
                                         <connections>
+                                            <action selector="searchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cFP-1b-6T2"/>
                                             <segue destination="3Am-vF-PGn" kind="show" id="qOv-5K-qhK"/>
                                         </connections>
                                     </button>

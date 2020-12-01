@@ -26,6 +26,11 @@ class KeywordsManagerVC: UIViewController {
         }
     }
 
+    // save current text list in userDefaults omitting empty values
+    @IBAction func searchButtonClicked(_ sender: Any) {
+        UserDefaults.standard.setKeywordsList(value: keywordsViewModel.keywords.map({ $0.text }).filter { !$0.isEmpty })
+    }
+
     @IBAction func rightButtonClicked(_ sender: UIBarButtonItem) {
 
         if tableView.isEditing {

@@ -47,6 +47,7 @@ class APIService {
 
     func request<T: Decodable>(url: URL) -> AnyPublisher<T, APIServiceError> {
         return URLSession.shared.dataTaskPublisher(for: url)
+            .retry(2)
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError({ error in

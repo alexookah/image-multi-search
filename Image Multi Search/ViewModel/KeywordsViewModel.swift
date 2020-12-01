@@ -10,7 +10,7 @@ import Combine
 
 class KeywordsViewModel {
 
-    var words = [
+    let demoSeachWords = [
         "boho interior design",
         "animal photography portait",
         "illustration",
@@ -25,7 +25,17 @@ class KeywordsViewModel {
     var keywords: [Keyword] = []
 
     init() {
-        words.forEach({ word in keywords.append(Keyword(text: word)) })
+        // load previously searched keywords from userDefaults
+        if let previouslyUsedKeywords = UserDefaults.standard.getKeywordsList() {
+            generateKeywords(words: previouslyUsedKeywords)
+        } else {
+            generateKeywords(words: demoSeachWords)
+        }
+        //
         keywords.append(Keyword(text: ""))
+    }
+
+    func generateKeywords(words: [String]) {
+        words.forEach({ word in keywords.append(Keyword(text: word)) })
     }
 }

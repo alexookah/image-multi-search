@@ -42,12 +42,19 @@ class Keyword {
 
     func observeTextChanges() {
         textPublisher
-            .filter({ $0.count > 0 })
+            .handleEvents(receiveOutput: { value in
+                if value.isEmpty {
+                    self.searchResultStatusPublisher.send(.none)
+                } else {
+                    self.searchResultStatusPublisher.send(.loading)
+                }
+            })
             .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
+            .filter({ !$0.isEmpty })
             .removeDuplicates()
             .receive(on: RunLoop.main)
             .sink { value in
-                print("about to make a new query: ", value)
+                print("new query: ", value)
                 self.getSearchResultWith(text: value)
             }
             .store(in: &subscriptions)
@@ -59,13 +66,14 @@ class Keyword {
         searchResultStatusPublisher.send(.loading)
 
         APIService.shared.request(url: url)
-            .sink(receiveCompletion: {  completion in
+            .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
                     print("ERROR:", error)
-                    self.searchResultStatusPublisher.send(.failed)
+                    self?.searchResultStatusPublisher.send(.failed)
                 case .finished:
-                    self.searchResultStatusPublisher.send(.success)
+                    print("finished:")
+                    self?.searchResultStatusPublisher.send(.success)
                 }
             }, receiveValue: { [weak self] searchResult in
                 self?.searchResult = searchResult

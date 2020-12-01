@@ -39,7 +39,7 @@ class KeywordCell: UITableViewCell {
             .receive(on: RunLoop.main)
             .sink(receiveValue: { value in
                 keyword.text = value ?? ""
-                print("UITextField.text changed to: \(value ?? "")")
+                print("keyword textfield changed to: \(value ?? "")")
             })
             .store(in: &cancellables)
     }
@@ -61,9 +61,8 @@ class KeywordCell: UITableViewCell {
                     self.showOrHideActivityIndicator(shouldShow: false)
                     self.statusImage.image = UIImage(systemName: "xmark.circle")
                 case .none:
-                    self.statusImage.isHidden = true
                     self.activityIndicator.stopAnimating()
-                }
+                    self.statusImage.isHidden = true
             }
             .store(in: &cancellables)
     }

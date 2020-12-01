@@ -47,8 +47,8 @@ class SearchResultsVC: UIViewController {
         snapshot.appendSections(keywordsViewModel.keywords)
 
         for keyword in keywordsViewModel.keywords {
-            guard let searchResult = keyword.searchResult else { continue }
-            snapshot.appendItems(searchResult.items, toSection: keyword)
+            guard let searchResultItems = keyword.searchResult?.items else { continue }
+            snapshot.appendItems(searchResultItems, toSection: keyword)
         }
 
         dataSource?.apply(snapshot)
@@ -56,7 +56,8 @@ class SearchResultsVC: UIViewController {
 
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            guard self.keywordsViewModel.keywords[sectionIndex].searchResult != nil else { return nil}
+            guard let searchResultItems = self.keywordsViewModel.keywords[sectionIndex].searchResult?.items,
+                  !searchResultItems.isEmpty else { return nil}
             return self.createImageResultsSection(using: self.keywordsViewModel.keywords[sectionIndex])
         }
 
