@@ -55,24 +55,21 @@ class KeywordCell: UITableViewCell {
                     self.activityIndicator.stopAnimating()
                     self.statusImage.isHidden = true
                 case .typing:
-                    self.activityIndicator.stopAnimating()
                     self.statusImage.image = UIImage(systemName: "ellipsis")
+                    self.showOrHideActivityIndicator(shouldShow: false)
                 case .loading:
                     self.showOrHideActivityIndicator(shouldShow: true)
-                    self.activityIndicator.startAnimating()
                 case .success:
-                    self.showOrHideActivityIndicator(shouldShow: false)
                     self.statusImage.image = UIImage(systemName: "checkmark.circle")
+                    self.showOrHideActivityIndicator(shouldShow: false)
                 case .failed:
-                    self.showOrHideActivityIndicator(shouldShow: false)
-                    self.statusImage.image = UIImage(systemName: "exclamationmark.triangle")
-                case .noItems:
-                    self.showOrHideActivityIndicator(shouldShow: false)
                     self.statusImage.image = UIImage(systemName: "xmark.circle")
+                    self.showOrHideActivityIndicator(shouldShow: false)
                 }
+
             }
             .store(in: &cancellables)
-    }
+        }
 
     func showOrHideActivityIndicator(shouldShow: Bool) {
         statusImage.isHidden = shouldShow

@@ -46,27 +46,20 @@ class Keyword {
     func observeTextChanges() {
         textPublisher
             .handleEvents(receiveOutput: { value in
-                if value.isEmpty {
-                    self.searchResultStatusPublisher.send(.none)
-                } else if self.apiStatus == .none {
-                    self.searchResultStatusPublisher.send(.loading)
-                } else {
-                    self.searchResultStatusPublisher.send(.typing)
-                }
+                self.searchResultStatusPublisher.send(value.isEmpty ? .none : .typing)
             })
             .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
             .filter({ !$0.isEmpty })
             .removeDuplicates { prev, current in // do not make the same api request
                 if prev == current {
-                    // show previous api result
                     self.searchResultStatusPublisher.send(self.apiStatus)
-
-                    if self.apiStatus == .failed {
-                        // if previous request failed load, allow to continue
-                        return false
-                    }
                 }
-                return prev == current
+                if prev == current && self.apiStatus == .failed {
+                    return false // same keyword allow to continue, because the apiStatus failed
+                } else {
+                    return prev == current
+                }
+
             }
             .receive(on: RunLoop.main)
             .sink { value in
