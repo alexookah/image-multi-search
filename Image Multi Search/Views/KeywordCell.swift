@@ -46,11 +46,11 @@ class KeywordCell: UITableViewCell {
                 switch value {
                 case .none:
                     self.activityIndicator.stopAnimating()
-                    self.setStatusImage(systemName: nil)
+                    self.statusImage.isHidden = true
 
                 case .loading:
                     self.activityIndicator.startAnimating()
-                    self.setStatusImage(systemName: nil)
+                    self.statusImage.isHidden = true
 
                 case .typing:
                     self.setStatusImage(systemName: "ellipsis")
@@ -65,15 +65,10 @@ class KeywordCell: UITableViewCell {
             .store(in: &cancellables)
         }
 
-    func setStatusImage(systemName: String?) {
-
-        if let systemName = systemName {
-            statusImage.isHidden = false
-            activityIndicator.stopAnimating()
-            statusImage.image = UIImage(systemName: systemName)
-        } else {
-            statusImage.isHidden = true
-        }
+    func setStatusImage(systemName: String) {
+        statusImage.isHidden = false
+        activityIndicator.stopAnimating()
+        statusImage.image = UIImage(systemName: systemName)
     }
 
 }
