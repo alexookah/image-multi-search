@@ -43,6 +43,8 @@ class Keyword {
         subscriptions.forEach { $0.cancel() }
     }
 
+    // Observe the keyword changes in order to have ready the search results for the next screen
+    // using some Combine operators debounce, filter and removeDuplicates
     func observeTextChanges() {
         textPublisher
             .handleEvents(receiveOutput: { value in
@@ -91,6 +93,7 @@ class Keyword {
                     print("finished:")
                     self?.apiStatus = .success
                     self?.searchResultStatusPublisher.send(.success)
+                    self?.searchResult?.sectionTitle = text
                 }
             }, receiveValue: { [weak self] searchResult in
                 self?.searchResult = searchResult

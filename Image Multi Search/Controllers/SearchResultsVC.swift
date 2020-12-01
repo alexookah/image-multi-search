@@ -23,22 +23,17 @@ class SearchResultsVC: UIViewController {
 
         collectionView.collectionViewLayout = createCompositionalLayout()
 
-        let nib = UINib(nibName: PreviewImageSearchCell.reuseIdentifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: PreviewImageSearchCell.reuseIdentifier)
+        collectionView.register(SectionHeader.nib(),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: SectionHeader.reuseIdentifier)
+
+        collectionView.register(PreviewImageSearchCell.nib(),
+                                forCellWithReuseIdentifier: PreviewImageSearchCell.reuseIdentifier)
 
         createDataSource()
+        createSections()
+
         loadData()
-    }
-
-    func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource
-        <Keyword, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewImageSearchCell.reuseIdentifier,
-                                                          for: indexPath) as? PreviewImageSearchCell
-            cell?.configWith(resultItem: searchResult)
-            return cell
-        }
     }
 
     func loadData() {
@@ -52,6 +47,37 @@ class SearchResultsVC: UIViewController {
         }
 
         dataSource?.apply(snapshot)
+    }
+
+    func createSections() {
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard let sectionHeader = collectionView
+                    .dequeueReusableSupplementaryView(ofKind: kind,
+                                                      withReuseIdentifier: SectionHeader.reuseIdentifier,
+                                                      for: indexPath) as? SectionHeader
+            else { return nil }
+
+            guard
+                let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
+                let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
+                let searchResult = keyword.searchResult, searchResult.items.count > 0
+            else { return sectionHeader }
+
+            sectionHeader.title.text = searchResult.sectionTitle?.uppercased()
+            sectionHeader.subtitle.text = "total results: " + searchResult.searchInformation.formattedTotalResults
+            return sectionHeader
+        }
+    }
+
+    func createDataSource() {
+        dataSource = UICollectionViewDiffableDataSource
+        <Keyword, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewImageSearchCell.reuseIdentifier,
+                                                          for: indexPath) as? PreviewImageSearchCell
+            cell?.configWith(resultItem: searchResult)
+            return cell
+        }
     }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -80,7 +106,20 @@ class SearchResultsVC: UIViewController {
 
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
         layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
+
+        let layoutSectionHeader = createSectionHeaderLayout()
+        layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+
         return layoutSection
+    }
+
+    func createSectionHeaderLayout() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93),
+                                                             heightDimension: .estimated(80))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize,
+                                                                 elementKind: UICollectionView.elementKindSectionHeader,
+                                                                 alignment: .top)
+        return layout
     }
 
 }

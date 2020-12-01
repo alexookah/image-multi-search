@@ -37,4 +37,8 @@ class PreviewImageSearchCell: UICollectionViewCell {
         }
     }
 
+    static func nib() -> UINib {
+        return UINib(nibName: reuseIdentifier, bundle: nil)
+    }
+
 }

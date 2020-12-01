@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SectionHeader" id="U6b-Vx-4bR" customClass="SectionHeader" customModule="Image_Multi_Search" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="352" height="79"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="87U-OH-49d">
+                    <rect key="frame" x="0.0" y="0.0" width="352" height="79"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSh-TU-qdt">
+                            <rect key="frame" x="0.0" y="0.0" width="352" height="1"/>
+                            <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="VdJ-Hs-W1v"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="752" ambiguous="YES" text="BOHO INTERIOR DESIGN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cy8-oc-n5a">
+                            <rect key="frame" x="0.0" y="11" width="352" height="42"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" ambiguous="YES" text="total results: 8.100.1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUm-hq-jDa">
+                            <rect key="frame" x="0.0" y="63" width="352" height="16"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstItem="87U-OH-49d" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="7Jb-6L-csS"/>
+                <constraint firstAttribute="trailing" secondItem="87U-OH-49d" secondAttribute="trailing" id="FGC-zJ-C1a"/>
+                <constraint firstItem="87U-OH-49d" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="fah-gQ-DVw"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="87U-OH-49d" secondAttribute="bottom" id="hMV-iX-R35"/>
+            </constraints>
+            <connections>
+                <outlet property="seperator" destination="TSh-TU-qdt" id="qQM-hd-qno"/>
+                <outlet property="subtitle" destination="dUm-hq-jDa" id="ntW-PW-Zj6"/>
+                <outlet property="title" destination="cy8-oc-n5a" id="l3m-8S-Maj"/>
+            </connections>
+            <point key="canvasLocation" x="-384.05797101449281" y="169.08482142857142"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <systemColor name="quaternaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
