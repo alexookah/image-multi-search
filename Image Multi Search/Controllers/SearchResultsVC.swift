@@ -30,10 +30,54 @@ class SearchResultsVC: UIViewController {
         collectionView.register(PreviewImageSearchCell.nib(),
                                 forCellWithReuseIdentifier: PreviewImageSearchCell.reuseIdentifier)
 
+        collectionView.register(SectionFooter.nib(),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: SectionFooter.reuseIdentifier)
+
         createDataSource()
-        createSections()
+        createHeaderAndFooter()
+//        createFooter()
 
         loadData()
+    }
+
+    func createDataSource() {
+        dataSource = UICollectionViewDiffableDataSource
+        <Keyword, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
+
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewImageSearchCell.reuseIdentifier,
+                                                          for: indexPath) as? PreviewImageSearchCell
+            cell?.configWith(resultItem: searchResult)
+            return cell
+        }
+    }
+
+    func createHeaderAndFooter() {
+        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            if kind == UICollectionView.elementKindSectionHeader {
+                guard let header = collectionView
+                        .dequeueReusableSupplementaryView(ofKind: kind,
+                                                          withReuseIdentifier: SectionHeader.reuseIdentifier,
+                                                          for: indexPath) as? SectionHeader  else { return nil }
+
+                guard
+                    let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
+                    let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
+                    let searchResult = keyword.searchResult, searchResult.items.count > 0
+                else { return header }
+
+                header.configWith(keyword: keyword)
+                return header
+            } else {
+                guard let footer = collectionView
+                        .dequeueReusableSupplementaryView(ofKind: kind,
+                                                          withReuseIdentifier: SectionFooter.reuseIdentifier,
+                                                          for: indexPath) as? SectionFooter
+                else { return nil }
+
+                return footer
+            }
+        }
     }
 
     func loadData() {
@@ -47,37 +91,6 @@ class SearchResultsVC: UIViewController {
         }
 
         dataSource?.apply(snapshot)
-    }
-
-    func createSections() {
-        dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-            guard let sectionHeader = collectionView
-                    .dequeueReusableSupplementaryView(ofKind: kind,
-                                                      withReuseIdentifier: SectionHeader.reuseIdentifier,
-                                                      for: indexPath) as? SectionHeader
-            else { return nil }
-
-            guard
-                let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
-                let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
-                let searchResult = keyword.searchResult, searchResult.items.count > 0
-            else { return sectionHeader }
-
-            sectionHeader.title.text = searchResult.sectionTitle?.uppercased()
-            sectionHeader.subtitle.text = "total results: " + searchResult.searchInformation.formattedTotalResults
-            return sectionHeader
-        }
-    }
-
-    func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource
-        <Keyword, ResultItem>(collectionView: collectionView) { collectionView, indexPath, searchResult in
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PreviewImageSearchCell.reuseIdentifier,
-                                                          for: indexPath) as? PreviewImageSearchCell
-            cell?.configWith(resultItem: searchResult)
-            return cell
-        }
     }
 
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -108,7 +121,8 @@ class SearchResultsVC: UIViewController {
         layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
 
         let layoutSectionHeader = createSectionHeaderLayout()
-        layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+        let layoutSectionFooter = createSectionFooterLayout()
+        layoutSection.boundarySupplementaryItems = [layoutSectionHeader, layoutSectionFooter]
 
         return layoutSection
     }
@@ -119,6 +133,15 @@ class SearchResultsVC: UIViewController {
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize,
                                                                  elementKind: UICollectionView.elementKindSectionHeader,
                                                                  alignment: .top)
+        return layout
+    }
+
+    func createSectionFooterLayout() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93),
+                                                             heightDimension: .estimated(40))
+        let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize,
+                                                                 elementKind: UICollectionView.elementKindSectionFooter,
+                                                                 alignment: .bottom)
         return layout
     }
 

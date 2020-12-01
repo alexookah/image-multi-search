@@ -56,10 +56,10 @@ class KeywordCell: UITableViewCell {
                     self.setStatusImage(systemName: "ellipsis")
                 case .success:
                     self.setStatusImage(systemName: "checkmark.circle")
-                case .failed:
-                    self.setStatusImage(systemName: "exclamationmark.triangle")
                 case .noItems:
                     self.setStatusImage(systemName: "xmark.circle")
+                case .failed:
+                    self.setStatusImage(systemName: "exclamationmark.triangle")
                 }
             }
             .store(in: &cancellables)
