@@ -27,6 +27,7 @@
 		B4DF836125751FA100BDF6EC /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DF836025751FA100BDF6EC /* Keyword.swift */; };
 		B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DF836325751FC200BDF6EC /* KeywordsViewModel.swift */; };
 		B4F0E17125764E890046BD56 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E17025764E890046BD56 /* UIButton.swift */; };
+		B4F0E1822576B6CF0046BD56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B4F0E1812576B6CF0046BD56 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B4DF836025751FA100BDF6EC /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		B4DF836325751FC200BDF6EC /* KeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsViewModel.swift; sourceTree = "<group>"; };
 		B4F0E17025764E890046BD56 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		B4F0E1812576B6CF0046BD56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		B4A78450257026BB007CBB78 = {
 			isa = PBXGroup;
 			children = (
+				B4F0E1812576B6CF0046BD56 /* .gitignore */,
 				B4A7845B257026BB007CBB78 /* Image Multi Search */,
 				B4A7845A257026BB007CBB78 /* Products */,
 			);
@@ -167,6 +170,7 @@
 				B4A78456257026BB007CBB78 /* Frameworks */,
 				B4A78457257026BB007CBB78 /* Resources */,
 				B4D6C85E2573955700DAEFC1 /* Swiftlint */,
+				B4F0E1852576BA0A0046BD56 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -223,6 +227,7 @@
 				B4A78469257026BC007CBB78 /* LaunchScreen.storyboard in Resources */,
 				B4A78466257026BC007CBB78 /* Assets.xcassets in Resources */,
 				B4D5FE7C2572CAC90057C141 /* PreviewImageSearchCell.xib in Resources */,
+				B4F0E1822576B6CF0046BD56 /* .gitignore in Resources */,
 				B4A78464257026BB007CBB78 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +252,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B4F0E1852576BA0A0046BD56 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLIST_FILE=\"GoogleCustomSearch-Info.plist\"\nPLIST_PATH=\"${PROJECT_DIR}/${PLIST_FILE}\"\ncp \"${PLIST_PATH}\" \"${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/GoogleCustomSearch-Info.plist\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

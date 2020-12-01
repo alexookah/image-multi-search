@@ -63,6 +63,9 @@ class KeywordCell: UITableViewCell {
                     self.statusImage.image = UIImage(systemName: "checkmark.circle")
                     self.showOrHideActivityIndicator(shouldShow: false)
                 case .failed:
+                    self.statusImage.image = UIImage(systemName: "exclamationmark.triangle")
+                    self.showOrHideActivityIndicator(shouldShow: false)
+                case .noItems:
                     self.statusImage.image = UIImage(systemName: "xmark.circle")
                     self.showOrHideActivityIndicator(shouldShow: false)
                 }

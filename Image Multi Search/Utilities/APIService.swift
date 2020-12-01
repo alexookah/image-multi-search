@@ -24,7 +24,18 @@ class APIService {
 
     let baseURLString = "https://www.googleapis.com/customsearch/v1"
 
-    private let apikey = "AIzaSyCrZtIBCbM3VEuFpcYYuVyO3SBzKGSPoIw"
+    private var apikey: String {
+        guard let filePath = Bundle.main.path(forResource: "GoogleCustomSearch-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'GoogleCustomSearch-Info.plist'.")
+        }
+
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+          fatalError("Couldn't find key 'API_KEY' in 'CustomGoogleSearch-Info.plist'.")
+        }
+        return value
+    }
+
     private let searchEngine = "017901247231445677654:zwad8gw42fj"
     private let searchType = "image"
 

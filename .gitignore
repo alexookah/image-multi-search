@@ -1,3 +1,5 @@
+# KEEP GoogleCustomSearch-Info.plist out of version controll
+GoogleCustomSearch-Info.plist
 
 # Created by https://www.toptal.com/developers/gitignore/api/xcode
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode
