@@ -7,14 +7,9 @@
 
 import UIKit
 
-class KeywordsManagerVC: UIViewController {
+class KeywordsManagerVC: UITableViewController {
 
     let keywordsViewModel = KeywordsViewModel()
-
-    @IBOutlet weak var leftButton: UIBarButtonItem!
-    @IBOutlet weak var rightButton: UIBarButtonItem!
-
-    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +26,7 @@ class KeywordsManagerVC: UIViewController {
         UserDefaults.standard.setKeywordsList(value: keywordsViewModel.keywords.map({ $0.text }).filter { !$0.isEmpty })
     }
 
-    @IBAction func rightButtonClicked(_ sender: UIBarButtonItem) {
-
-        if tableView.isEditing {
-            removeRows(indexPathsToRemove: tableView.indexPathsForSelectedRows ?? [])
-        } else {
-            addRow()
-        }
-    }
-
+    // Toggle tableView is editing, change button based on the editing state
     @IBAction func leftButtonClicked(_ sender: UIBarButtonItem) {
         tableView.isEditing = !tableView.isEditing
 
@@ -54,22 +41,32 @@ class KeywordsManagerVC: UIViewController {
         navigationItem.setRightBarButton(rightNewButton, animated: true)
     }
 
+    // Remove rows if tableView isEditing else add rows
+    @IBAction func rightButtonClicked(_ sender: UIBarButtonItem) {
+        tableView.isEditing ? removeRows(indexPathsToRemove: tableView.indexPathsForSelectedRows ?? []) : addRow()
+    }
+
+    @IBAction func tableViewTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
 }
 
 // MARK: UITableViewDataSource
 
-extension KeywordsManagerVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension KeywordsManagerVC {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return keywordsViewModel.keywords.count
     }
 
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
         let movedObject = keywordsViewModel.keywords[sourceIndexPath.row]
         keywordsViewModel.keywords.remove(at: sourceIndexPath.row)
         keywordsViewModel.keywords.insert(movedObject, at: destinationIndexPath.row)
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordCell.reuseIdentifier,
                                                        for: indexPath) as? KeywordCell else { return UITableViewCell() }
 
@@ -82,10 +79,10 @@ extension KeywordsManagerVC: UITableViewDataSource {
 
 // MARK: UITableViewDelegate
 
-extension KeywordsManagerVC: UITableViewDelegate {
+extension KeywordsManagerVC {
 
-    func tableView(_ tableView: UITableView,
-                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt
+                                indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
             makeDeleteContextualAction(forRowAt: indexPath)
         ])

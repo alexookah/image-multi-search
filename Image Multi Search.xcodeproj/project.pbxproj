@@ -26,6 +26,7 @@
 		B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */; };
 		B4DF836125751FA100BDF6EC /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DF836025751FA100BDF6EC /* Keyword.swift */; };
 		B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DF836325751FC200BDF6EC /* KeywordsViewModel.swift */; };
+		B4F0E17125764E890046BD56 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F0E17025764E890046BD56 /* UIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
 		B4DF836025751FA100BDF6EC /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		B4DF836325751FC200BDF6EC /* KeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsViewModel.swift; sourceTree = "<group>"; };
+		B4F0E17025764E890046BD56 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				B404C05225704B42008B76FE /* URLSession.swift */,
 				B49CEE742575B1560094CEC6 /* UserDefaults.swift */,
+				B4F0E17025764E890046BD56 /* UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
 				B404C05325704B42008B76FE /* URLSession.swift in Sources */,
+				B4F0E17125764E890046BD56 /* UIButton.swift in Sources */,
 				B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */,
 				B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */,
 				B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */,

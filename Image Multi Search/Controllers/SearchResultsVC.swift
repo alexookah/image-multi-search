@@ -90,15 +90,15 @@ class SearchResultsVC: UIViewController {
 extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
 
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-//        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
-//        preheater.startPreheating(with: urls)
-//        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
+        let urls = indexPaths.compactMap { keywordsViewModel.keywords[$0.section].searchResult?.items[$0.row].imageUrl }
+        preheater.startPreheating(with: urls)
+        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-//        let urls = indexPaths.map { URL(string: searchResults[$0.section].items[$0.row].link)! }
-//        preheater.stopPreheating(with: urls)
-//        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
+        let urls = indexPaths.compactMap { keywordsViewModel.keywords[$0.section].searchResult?.items[$0.row].imageUrl }
+        preheater.stopPreheating(with: urls)
+        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     private func stringForIndexPaths(_ indexPaths: [IndexPath]) -> String {
