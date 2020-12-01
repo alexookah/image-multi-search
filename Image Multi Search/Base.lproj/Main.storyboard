@@ -70,7 +70,7 @@
         <scene sceneID="Rnc-7F-oUQ">
             <objects>
                 <tableViewController id="Gys-Gk-UQu" customClass="KeywordsManagerVC" customModule="Image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qxp-YE-Nbo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qxp-YE-Nbo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -105,7 +105,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="q9p-gc-ECh">
-                            <rect key="frame" x="0.0" y="266.33333206176758" width="414" height="82"/>
+                            <rect key="frame" x="0.0" y="266" width="414" height="82"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBl-ab-B2D">
@@ -131,20 +131,23 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="93x-x3-s8c" customClass="KeywordCell" customModule="Image_Multi_Search" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="188" width="414" height="50.333332061767578"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="93x-x3-s8c" customClass="KeywordCell" customModule="Image_Multi_Search" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="188" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93x-x3-s8c" id="euk-So-aZc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a keyword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVp-iA-qWJ">
-                                            <rect key="frame" x="8" y="8" width="350" height="34.333333333333336"/>
+                                            <rect key="frame" x="8" y="8" width="350" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="textFieldDidChange:" destination="93x-x3-s8c" eventType="editingChanged" id="zdM-lh-uav"/>
+                                            </connections>
                                         </textField>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-vc-96D">
-                                            <rect key="frame" x="374" y="13.333333333333336" width="24" height="24"/>
+                                            <rect key="frame" x="374" y="13" width="24" height="24"/>
                                             <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="8K3-vc-96D" secondAttribute="height" multiplier="1:1" id="7Ky-UU-KWW"/>
@@ -152,7 +155,7 @@
                                             </constraints>
                                         </imageView>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="c4x-Hw-2H7">
-                                            <rect key="frame" x="376" y="15.333333333333336" width="20" height="20"/>
+                                            <rect key="frame" x="376" y="15" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>

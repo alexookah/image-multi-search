@@ -97,7 +97,6 @@ class Keyword {
             })
             .store(in: &subscriptions)
     }
-
 }
 
 // MARK: Hashable functions

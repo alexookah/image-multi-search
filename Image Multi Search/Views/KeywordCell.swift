@@ -23,25 +23,18 @@ class KeywordCell: UITableViewCell {
         cancellables.forEach { $0.cancel() }
     }
 
-    func config(keyword: Keyword, keywordsViewModel: KeywordsViewModel) {
+    var keyword: Keyword?
+
+    func config(keyword: Keyword) {
+        self.keyword = keyword
         textField.text = keyword.text
 
-        observeTextFieldChanges(keyword: keyword)
         observeSearchResultStatus(keyword: keyword)
     }
 
-    func observeTextFieldChanges(keyword: Keyword) {
-        let textFieldPublisher = NotificationCenter.default
-            .publisher(for: UITextField.textDidChangeNotification, object: textField)
-            .map({ ($0.object as? UITextField)?.text })
-
-        textFieldPublisher
-            .receive(on: RunLoop.main)
-            .sink(receiveValue: { value in
-                keyword.text = value ?? ""
-                print("keyword textfield changed to: \(value ?? "")")
-            })
-            .store(in: &cancellables)
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        guard let newText = sender.text else { return }
+        self.keyword?.text = newText
     }
 
     func observeSearchResultStatus(keyword: Keyword) {

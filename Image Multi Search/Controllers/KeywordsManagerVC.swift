@@ -71,7 +71,7 @@ extension KeywordsManagerVC {
                                                        for: indexPath) as? KeywordCell else { return UITableViewCell() }
 
         let keyword = keywordsViewModel.keywords[indexPath.row]
-        cell.config(keyword: keyword, keywordsViewModel: keywordsViewModel)
+        cell.config(keyword: keyword)
         return cell
     }
 

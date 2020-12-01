@@ -14,25 +14,27 @@ class PreviewImageSearchCell: UICollectionViewCell {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var image: UIImageView!
-
-    var resultItem: ResultItem!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var title: UILabel!
 
     func configWith(resultItem: ResultItem) {
-        self.resultItem = resultItem
-        guard let imageURl = URL(string: resultItem.link) else { return }
+        title.text = resultItem.title
+        guard let imageURl = resultItem.imageUrl else { return }
         activityIndicator.startAnimating()
 
         let request = ImageRequest(url: imageURl, processors: [
-            ImageProcessors.Resize(size: image.bounds.size)
+            ImageProcessors.Resize(size: image.bounds.size) // resize image for performance improvements
         ])
 
-        Nuke.loadImage(with: request, into: image) { [weak self] _ in
+        let options = ImageLoadingOptions(
+            transition: .fadeIn(duration: 0.33),
+            failureImage: UIImage(systemName: "exclamationmark.triangle"),
+            contentModes: .init(success: .scaleAspectFill, failure: .center, placeholder: .center),
+            tintColors: .init(success: .none, failure: .red, placeholder: .none)
+        )
+
+        Nuke.loadImage(with: request, options: options, into: image) { [weak self] _ in
             self?.activityIndicator.stopAnimating()
         }
     }
+
 }
