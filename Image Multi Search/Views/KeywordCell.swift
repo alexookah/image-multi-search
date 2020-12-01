@@ -63,6 +63,7 @@ class KeywordCell: UITableViewCell {
                 case .none:
                     self.activityIndicator.stopAnimating()
                     self.statusImage.isHidden = true
+                }
             }
             .store(in: &cancellables)
     }
