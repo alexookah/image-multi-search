@@ -13,6 +13,7 @@ enum SearchResultStatus {
     case typing
     case loading
     case success
+    case noItems
     case failed
 }
 
@@ -55,15 +56,17 @@ class Keyword {
             })
             .debounce(for: .seconds(1.0), scheduler: DispatchQueue.main)
             .filter({ !$0.isEmpty })
-            .removeDuplicates { prev, current in
+            .removeDuplicates { prev, current in // do not make the same api request
                 if prev == current {
+                    // show previous api result
                     self.searchResultStatusPublisher.send(self.apiStatus)
+
+                    if self.apiStatus == .failed {
+                        // if previous request failed load, allow to continue
+                        return false
+                    }
                 }
-                if prev == current && self.apiStatus == .failed {
-                    return false
-                } else {
-                    return prev == current
-                }
+                return prev == current
             }
             .receive(on: RunLoop.main)
             .sink { value in
@@ -83,8 +86,14 @@ class Keyword {
                 switch completion {
                 case .failure(let error):
                     print("ERROR:", error)
-                    self?.apiStatus = .failed
-                    self?.searchResultStatusPublisher.send(.failed)
+                    switch error {
+                    case .decodeError:
+                        self?.apiStatus = .noItems
+                        self?.searchResultStatusPublisher.send(.noItems)
+                    default:
+                        self?.apiStatus = .failed
+                        self?.searchResultStatusPublisher.send(.failed)
+                    }
                 case .finished:
                     print("finished:")
                     self?.apiStatus = .success
