@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Agrume
+import Nuke
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Override point for customization after application launch.
+        setAgrumeDownloadHandler()
         return true
+    }
+
+    func setAgrumeDownloadHandler() {
+        AgrumeServiceLocator.shared.setDownloadHandler { url, completion in
+            // Download data, cache it and call the completion with the resulting UIImage
+            ImagePipeline.shared.loadData(with: url, completion: { result in
+                switch result {
+                case .success(let data):
+                    completion(UIImage(data: data.data))
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        }
     }
 
     // MARK: UISceneSession Lifecycle

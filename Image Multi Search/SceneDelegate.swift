@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
+        window?.tintColor = UIColor.appColor(.tintColor)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

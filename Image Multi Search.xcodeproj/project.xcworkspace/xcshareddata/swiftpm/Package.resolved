@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "Agrume",
+        "repositoryURL": "https://github.com/JanGorman/Agrume.git",
+        "state": {
+          "branch": null,
+          "revision": "2a8fabe2bfe2182ac4934ec4a097f699a1e841f4",
+          "version": "5.6.11"
+        }
+      },
+      {
         "package": "Nuke",
         "repositoryURL": "https://github.com/kean/Nuke.git",
         "state": {
           "branch": null,
           "revision": "ef122e4512e84020dca9d8f598408fdb38658946",
           "version": "9.2.0"
+        }
+      },
+      {
+        "package": "SwiftyGif",
+        "repositoryURL": "https://github.com/kirualex/SwiftyGif",
+        "state": {
+          "branch": null,
+          "revision": "420d12cba8338b03993f73a72c1f6b70d5273cf2",
+          "version": "5.3.0"
         }
       }
     ]

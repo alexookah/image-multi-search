@@ -16,6 +16,11 @@
 		B47242782577D38A0031AFFC /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242762577D38A0031AFFC /* ImageCell.swift */; };
 		B47242792577D38A0031AFFC /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47242772577D38A0031AFFC /* ImageCell.xib */; };
 		B472427E2577ED3B0031AFFC /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B472427D2577ED3B0031AFFC /* Orientation.swift */; };
+		B47242822577F3920031AFFC /* Agrume in Frameworks */ = {isa = PBXBuildFile; productRef = B47242812577F3920031AFFC /* Agrume */; };
+		B47242852577F7040031AFFC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242842577F7040031AFFC /* UIViewController.swift */; };
+		B47242882577F8D60031AFFC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242872577F8D60031AFFC /* UIColor.swift */; };
+		B4724290257806DA0031AFFC /* ImageOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B472428F257806D90031AFFC /* ImageOverlayView.xib */; };
+		B47242932578070A0031AFFC /* ImageOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242922578070A0031AFFC /* ImageOverlayView.swift */; };
 		B49CEE752575B1560094CEC6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CEE742575B1560094CEC6 /* UserDefaults.swift */; };
 		B4A7845D257026BB007CBB78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845C257026BB007CBB78 /* AppDelegate.swift */; };
 		B4A7845F257026BB007CBB78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845E257026BB007CBB78 /* SceneDelegate.swift */; };
@@ -50,6 +55,10 @@
 		B47242762577D38A0031AFFC /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B47242772577D38A0031AFFC /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		B472427D2577ED3B0031AFFC /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
+		B47242842577F7040031AFFC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		B47242872577F8D60031AFFC /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B472428F257806D90031AFFC /* ImageOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageOverlayView.xib; sourceTree = "<group>"; };
+		B47242922578070A0031AFFC /* ImageOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOverlayView.swift; sourceTree = "<group>"; };
 		B49CEE742575B1560094CEC6 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B4A78459257026BB007CBB78 /* Image Multi Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Multi Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A7845C257026BB007CBB78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D6C87E2573F8FA00DAEFC1 /* Nuke in Frameworks */,
+				B47242822577F3920031AFFC /* Agrume in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +134,8 @@
 				B4F0E17025764E890046BD56 /* UIButton.swift */,
 				B43D5E822577169000B6A491 /* UIView.swift */,
 				B472427D2577ED3B0031AFFC /* Orientation.swift */,
+				B47242842577F7040031AFFC /* UIViewController.swift */,
+				B47242872577F8D60031AFFC /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +200,8 @@
 				B4F0E1A12576EC250046BD56 /* KeywordsManagerVC */,
 				B4F0E1A22576EC3B0046BD56 /* SearchResultsVC */,
 				B472426E2577BE130031AFFC /* AllResultsVC */,
+				B47242922578070A0031AFFC /* ImageOverlayView.swift */,
+				B472428F257806D90031AFFC /* ImageOverlayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +255,7 @@
 			name = "Image Multi Search";
 			packageProductDependencies = (
 				B4D6C87D2573F8FA00DAEFC1 /* Nuke */,
+				B47242812577F3920031AFFC /* Agrume */,
 			);
 			productName = PhotoViewerApp;
 			productReference = B4A78459257026BB007CBB78 /* Image Multi Search.app */;
@@ -271,6 +286,7 @@
 			mainGroup = B4A78450257026BB007CBB78;
 			packageReferences = (
 				B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */,
+				B47242802577F3920031AFFC /* XCRemoteSwiftPackageReference "Agrume" */,
 			);
 			productRefGroup = B4A7845A257026BB007CBB78 /* Products */;
 			projectDirPath = "";
@@ -294,6 +310,7 @@
 				B4F0E1822576B6CF0046BD56 /* .gitignore in Resources */,
 				B4A78464257026BB007CBB78 /* Main.storyboard in Resources */,
 				B4F0E1BC2576F71E0046BD56 /* SectionHeader.xib in Resources */,
+				B4724290257806DA0031AFFC /* ImageOverlayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,12 +365,15 @@
 				B47242722577C3300031AFFC /* CustomFlowLayout.swift in Sources */,
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
 				B47242782577D38A0031AFFC /* ImageCell.swift in Sources */,
+				B47242852577F7040031AFFC /* UIViewController.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
 				B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */,
 				B4F0E17125764E890046BD56 /* UIButton.swift in Sources */,
 				B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */,
 				B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */,
+				B47242932578070A0031AFFC /* ImageOverlayView.swift in Sources */,
 				B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */,
+				B47242882577F8D60031AFFC /* UIColor.swift in Sources */,
 				B43D5E8D25771F0000B6A491 /* AllImagesVC.swift in Sources */,
 				B404C057257055DD008B76FE /* SearchResult.swift in Sources */,
 				B4A78461257026BB007CBB78 /* KeywordsManagerVC.swift in Sources */,
@@ -509,7 +529,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
@@ -530,7 +549,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
@@ -571,6 +589,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B47242802577F3920031AFFC /* XCRemoteSwiftPackageReference "Agrume" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JanGorman/Agrume.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.11;
+			};
+		};
 		B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
@@ -582,6 +608,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B47242812577F3920031AFFC /* Agrume */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B47242802577F3920031AFFC /* XCRemoteSwiftPackageReference "Agrume" */;
+			productName = Agrume;
+		};
 		B4D6C87D2573F8FA00DAEFC1 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4D6C87C2573F8FA00DAEFC1 /* XCRemoteSwiftPackageReference "Nuke" */;

@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Agrume
 
 class AllImagesVC: UICollectionViewController {
 
     var keyword: Keyword!
+
+    private var agrume: Agrume?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,7 @@ class AllImagesVC: UICollectionViewController {
 
 // MARK: UICollectionViewDataSource
 
-extension AllImagesVC {
+extension AllImagesVC: ImageOverlayViewDelegate {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return keyword.searchResult?.items.count ?? 0
@@ -49,6 +52,58 @@ extension AllImagesVC {
         cell.configWith(resultItem: resultItem)
         return cell
     }
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let searchResult = keyword.searchResult else { return }
+
+        let allUrls = searchResult.items.compactMap { $0.imageUrl }
+
+        let agrumeBackground: Background = .blurred(.regular) //.colored(.black)
+
+        let overlayView = ImageOverlayView.instanceFromNib()
+        overlayView.configure()
+        overlayView.delegate = self
+
+        agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
+                            background: agrumeBackground, overlayView: overlayView)
+
+        let helper = overlayView.createAgrumePhotoLibraryHelper(from: self)
+        agrume?.onLongPress = helper.makeSaveToLibraryLongPressGesture
+
+        agrume?.show(from: self)
+
+        agrume?.didScroll = { [unowned self] index in
+            DispatchQueue.main.async {
+                self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: [], animated: false)
+                self.collectionView.setNeedsLayout()
+            }
+        }
+        agrume?.willDismiss = {
+            collectionView.setNeedsLayout()
+        }
+    }
+
+    // Action buttons from AgrumeOverlay
+    func overlayView(_ overlayView: ImageOverlayView, didSelectAction action: OverlayViewActions) {
+        guard let currentIndex = agrume?.currentIndex,
+              let resultItem = keyword.searchResult?.items[currentIndex] else { return }
+
+        switch action {
+        case .close:
+            agrume?.dismiss()
+        case .share:
+            agrume?.image(forIndex: currentIndex, completion: { [weak self] image in
+                guard let image = image else { return }
+                let uiActivityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+                self?.agrume?.present(uiActivityVC, animated: true)
+            })
+        case .openLink:
+            if let url = resultItem.image.contextLinkURL {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+
 }
 
 // MARK: CustomFlowLayoutDelegate

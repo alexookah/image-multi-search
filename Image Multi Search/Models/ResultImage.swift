@@ -8,6 +8,7 @@
 import UIKit
 
 struct ResultImage: Decodable, Hashable {
+    let contextLink: String
     let width: CGFloat
     let height: CGFloat
 
@@ -15,4 +16,8 @@ struct ResultImage: Decodable, Hashable {
 
     let thumbnailWidth: Int
     let thumbnailHeight: Int
+
+    var contextLinkURL: URL? {
+        return URL(string: contextLink)
+    }
 }

@@ -44,6 +44,7 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
+                                    <outlet property="delegate" destination="3Am-vF-PGn" id="gkU-vw-BBe"/>
                                     <outlet property="prefetchDataSource" destination="3Am-vF-PGn" id="6AI-Ts-K1b"/>
                                 </connections>
                             </collectionView>
@@ -408,7 +409,7 @@
             <point key="canvasLocation" x="240.80000000000001" y="813.54679802955673"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.59341663119999999" green="0.65772920850000005" blue="0.82937520740000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.59215686274509804" green="0.6588235294117647" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

@@ -7,6 +7,7 @@
 
 import UIKit
 import Nuke
+import Agrume
 
 class SearchResultsVC: UIViewController {
 
@@ -17,6 +18,8 @@ class SearchResultsVC: UIViewController {
     var keywordsViewModel: KeywordsViewModel!
 
     let preheater = ImagePreheater()
+
+    private var agrume: Agrume?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,11 +152,64 @@ class SearchResultsVC: UIViewController {
                                                                  alignment: .bottom)
         return layout
     }
+
 }
 
 // MARK: SearchResultsVCDelegate
 
-extension SearchResultsVC: SearchResultsVCDelegate {
+extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, ImageOverlayViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let searchResult =  keywordsViewModel.keywords[indexPath.section].searchResult else { return }
+
+        let allUrls = searchResult.items.compactMap { $0.imageUrl }
+
+        let agrumeBackground: Background = .blurred(.regular) //.colored(.black)
+
+        let overlayView = ImageOverlayView.instanceFromNib()
+        overlayView.configure()
+        overlayView.delegate = self
+
+        agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
+                            background: agrumeBackground, overlayView: overlayView)
+
+        let helper = overlayView.createAgrumePhotoLibraryHelper(from: self)
+        agrume?.onLongPress = helper.makeSaveToLibraryLongPressGesture
+
+        agrume?.show(from: self)
+
+        agrume?.didScroll = { [unowned self] index in
+            DispatchQueue.main.async {
+                self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: [], animated: false)
+                self.collectionView.setNeedsLayout()
+            }
+        }
+        agrume?.willDismiss = {
+            collectionView.setNeedsLayout()
+        }
+    }
+
+    func overlayView(_ overlayView: ImageOverlayView, didSelectAction action: OverlayViewActions) {
+        guard let currentIndex = agrume?.currentIndex,
+              let resultItem = keywordsViewModel.keywords[currentIndex].searchResult?.items[currentIndex]
+        else { return }
+
+        switch action {
+        case .close:
+            agrume?.dismiss()
+        case .share:
+            agrume?.image(forIndex: currentIndex, completion: { [weak self] image in
+                guard let image = image else { return }
+                let uiActivityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+                self?.agrume?.present(uiActivityVC, animated: true)
+            })
+        case .openLink:
+            if let url = resultItem.image.contextLinkURL {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+
 
     func showMoreResults(keyword: Keyword) {
         performSegue(withIdentifier: "showAllImagesVCSegue", sender: keyword)
