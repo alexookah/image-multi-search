@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Agrume
+import Nuke
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
         window?.tintColor = UIColor.appColor(.tintColor)
+        setAgrumeDownloadHandler()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -43,6 +46,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+
+
+    func setAgrumeDownloadHandler() {
+        AgrumeServiceLocator.shared.setDownloadHandler { url, completion in
+
+            let request = ImageRequest(url: url, processors: [
+                ImageProcessors.Resize(size: self.window?.bounds.size ?? .zero) // resize image for performance improvements
+            ])
+
+            let options = ImageLoadingOptions(
+                transition: .fadeIn(duration: 0.33),
+                failureImage: UIImage(systemName: "exclamationmark.triangle"),
+                contentModes: .init(success: .scaleAspectFill, failure: .center, placeholder: .center),
+                tintColors: .init(success: .none, failure: .red, placeholder: .none)
+            )
+
+            // Download data, cache it and call the completion with the resulting UIImage
+            ImagePipeline.shared.loadData(with: request, completion: { result in
+                switch result {
+                case .success(let data):
+                    completion(UIImage(data: data.data))
+                case .failure(let error):
+                    print(error)
+                    completion(nil)
+                }
+            })
+        }
     }
 
 }

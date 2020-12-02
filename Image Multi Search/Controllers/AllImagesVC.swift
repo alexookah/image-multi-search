@@ -54,14 +54,15 @@ extension AllImagesVC: ImageOverlayViewDelegate {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let searchResult = keyword.searchResult else { return }
+        guard let searchResultItems = keyword.searchResult?.items else { return }
 
-        let allUrls = searchResult.items.compactMap { $0.imageUrl }
+        let allUrls = keyword.searchResult?.items.compactMap { $0.imageUrl } ?? []
 
-        let agrumeBackground: Background = .blurred(.regular) //.colored(.black)
+        let agrumeBackground: Background = .blurred(.regular)
 
         let overlayView = ImageOverlayView.instanceFromNib()
         overlayView.configure()
+        overlayView.configText(with: searchResultItems[indexPath.item])
         overlayView.delegate = self
 
         agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
@@ -76,6 +77,7 @@ extension AllImagesVC: ImageOverlayViewDelegate {
             DispatchQueue.main.async {
                 self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: [], animated: false)
                 self.collectionView.setNeedsLayout()
+                overlayView.configText(with: searchResultItems[index])
             }
         }
         agrume?.willDismiss = {

@@ -22,6 +22,7 @@ class ImageOverlayView: AgrumeOverlayView {
 
     @IBOutlet weak var topNavigationBar: UINavigationBar!
     @IBOutlet weak var bottomNavigationBar: UINavigationBar!
+    @IBOutlet weak var text: UILabel!
 
     weak var delegate: ImageOverlayViewDelegate?
 
@@ -30,6 +31,10 @@ class ImageOverlayView: AgrumeOverlayView {
         makeClearMavigationBar(navigationBar: bottomNavigationBar)
 
         backgroundColor = .clear
+    }
+
+    func configText(with resultItem: ResultItem) {
+        text.text = resultItem.title
     }
 
     func makeClearMavigationBar(navigationBar: UINavigationBar) {
@@ -54,14 +59,14 @@ class ImageOverlayView: AgrumeOverlayView {
         delegate?.overlayView(self, didSelectAction: .openLink)
     }
 
-    func createAgrumePhotoLibraryHelper(from vc: UIViewController) -> AgrumePhotoLibraryHelper {
+    func createAgrumePhotoLibraryHelper(from viewController: UIViewController) -> AgrumePhotoLibraryHelper {
         let helper = AgrumePhotoLibraryHelper(saveButtonTitle: "Save Photo",
                                               cancelButtonTitle: "Cancel") { error in
             guard error == nil else {
-                vc.showAlertOK(titleToShow: "Photo", textToShow: "Saving the photo to your library failed")
+                viewController.showAlertOK(titleToShow: "Photo", textToShow: "Saving the photo to your library failed")
                 return
             }
-            vc.showAlertOK(titleToShow: "Photo", textToShow: "Your photo has been saved to your library")
+            viewController.showAlertOK(titleToShow: "Photo", textToShow: "Your photo has been saved to your library")
         }
         return helper
     }

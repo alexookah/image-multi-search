@@ -160,14 +160,15 @@ class SearchResultsVC: UIViewController {
 extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, ImageOverlayViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let searchResult =  keywordsViewModel.keywords[indexPath.section].searchResult else { return }
+        guard let searchResultItems = keywordsViewModel.keywords[indexPath.section].searchResult?.items else { return }
 
-        let allUrls = searchResult.items.compactMap { $0.imageUrl }
+        let allUrls = searchResultItems.compactMap { $0.imageUrl }
 
-        let agrumeBackground: Background = .blurred(.regular) //.colored(.black)
+        let agrumeBackground: Background = .blurred(.regular)
 
         let overlayView = ImageOverlayView.instanceFromNib()
         overlayView.configure()
+        overlayView.configText(with: searchResultItems[indexPath.item])
         overlayView.delegate = self
 
         agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
@@ -180,8 +181,10 @@ extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, Im
 
         agrume?.didScroll = { [unowned self] index in
             DispatchQueue.main.async {
-                self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: [], animated: false)
+                self.collectionView.scrollToItem(at: IndexPath(item: index, section: indexPath.section),
+                                                 at: [], animated: false)
                 self.collectionView.setNeedsLayout()
+                overlayView.configText(with: searchResultItems[index])
             }
         }
         agrume?.willDismiss = {
@@ -209,7 +212,6 @@ extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, Im
             }
         }
     }
-
 
     func showMoreResults(keyword: Keyword) {
         performSegue(withIdentifier: "showAllImagesVCSegue", sender: keyword)
