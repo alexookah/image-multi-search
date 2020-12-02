@@ -73,29 +73,4 @@ class APIService {
             })
             .eraseToAnyPublisher()
     }
-
-    // not anymore used
-    func getSearchResults<T: Decodable>(queryText: String,
-                                        completion: @escaping (Result<T, APIServiceError>) -> Void) {
-        guard let url = createURL(queryText: queryText).url else { return completion(.failure(.invalidURL)) }
-
-        urlSession.dataTask(with: url) { (result) in
-            switch result {
-            case .success(let (response, data)):
-                guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
-                    completion(.failure(.invalidResponse))
-                    return
-                }
-                do {
-                    let values = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(values))
-                } catch {
-                    completion(.failure(.decodeError))
-                }
-            case .failure(let error):
-                completion(.failure(.other(error)))
-            }
-        }.resume()
-    }
-
 }

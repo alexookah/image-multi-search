@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B404C04B257038B2008B76FE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404C04A257038B2008B76FE /* APIService.swift */; };
-		B404C05325704B42008B76FE /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404C05225704B42008B76FE /* URLSession.swift */; };
 		B404C057257055DD008B76FE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404C056257055DD008B76FE /* SearchResult.swift */; };
 		B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E7F257715D300B6A491 /* PopupVC.swift */; };
 		B43D5E832577169000B6A491 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E822577169000B6A491 /* UIView.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		B404C04A257038B2008B76FE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		B404C05225704B42008B76FE /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		B404C056257055DD008B76FE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		B43D5E7F257715D300B6A491 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		B43D5E822577169000B6A491 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		B404C04D25703C2F008B76FE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B404C05225704B42008B76FE /* URLSession.swift */,
 				B49CEE742575B1560094CEC6 /* UserDefaults.swift */,
 				B4F0E17025764E890046BD56 /* UIButton.swift */,
 				B43D5E822577169000B6A491 /* UIView.swift */,
@@ -319,7 +316,6 @@
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
 				B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */,
-				B404C05325704B42008B76FE /* URLSession.swift in Sources */,
 				B4F0E17125764E890046BD56 /* UIButton.swift in Sources */,
 				B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */,
 				B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */,
