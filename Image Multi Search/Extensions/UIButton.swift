@@ -18,7 +18,7 @@ import UIKit
         }
     }
 
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable override var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }

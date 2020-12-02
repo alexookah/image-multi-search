@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+protocol TapCellDelegate: class {
+    func addTappedAction()
+}
+
 class KeywordCell: UITableViewCell {
 
     static let reuseIdentifier: String = "KeywordCell"
@@ -15,6 +19,8 @@ class KeywordCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var statusImage: UIImageView!
+
+    weak var tapCellDelegate: TapCellDelegate?
 
     var cancellables = Set<AnyCancellable>()
 
@@ -29,6 +35,7 @@ class KeywordCell: UITableViewCell {
         self.keyword = keyword
         textField.text = keyword.text
 
+        addGestureRecognizerInStatusImage()
         observeSearchResultStatus(keyword: keyword)
     }
 
@@ -69,6 +76,14 @@ class KeywordCell: UITableViewCell {
         statusImage.isHidden = false
         activityIndicator.stopAnimating()
         statusImage.image = UIImage(systemName: systemName)
+    }
+
+    func addGestureRecognizerInStatusImage() {
+        statusImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:))))
+    }
+
+    @objc func imageTapped(_ sender: UITapGestureRecognizer) {
+        tapCellDelegate?.addTappedAction()
     }
 
 }

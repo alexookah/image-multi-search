@@ -54,7 +54,8 @@ class KeywordsManagerVC: UITableViewController {
 
 // MARK: UITableViewDataSource
 
-extension KeywordsManagerVC {
+extension KeywordsManagerVC: TapCellDelegate {
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return keywordsViewModel.keywords.count
     }
@@ -72,9 +73,15 @@ extension KeywordsManagerVC {
 
         let keyword = keywordsViewModel.keywords[indexPath.row]
         cell.config(keyword: keyword)
+        cell.tapCellDelegate = self
         return cell
     }
 
+    // MARK: TapCellDelegate
+    // show popupVC from this view controller
+    func addTappedAction() {
+        performSegue(withIdentifier: "showPopupVCSegue", sender: self)
+    }
 }
 
 // MARK: UITableViewDelegate
