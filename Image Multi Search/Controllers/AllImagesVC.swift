@@ -87,22 +87,17 @@ extension AllImagesVC: ImageOverlayViewDelegate {
 
     // Action buttons from AgrumeOverlay
     func overlayView(_ overlayView: ImageOverlayView, didSelectAction action: OverlayViewActions) {
-        guard let currentIndex = agrume?.currentIndex,
-              let resultItem = keyword.searchResult?.items[currentIndex] else { return }
-
         switch action {
         case .close:
             agrume?.dismiss()
         case .share:
+            guard let currentIndex = agrume?.currentIndex else { return }
+
             agrume?.image(forIndex: currentIndex, completion: { [weak self] image in
                 guard let image = image else { return }
                 let uiActivityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
                 self?.agrume?.present(uiActivityVC, animated: true)
             })
-        case .openLink:
-            if let url = resultItem.image.contextLinkURL {
-                UIApplication.shared.open(url)
-            }
         }
     }
 

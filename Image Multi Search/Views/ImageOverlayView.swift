@@ -11,7 +11,6 @@ import Agrume
 enum OverlayViewActions {
     case close
     case share
-    case openLink
 }
 
 protocol ImageOverlayViewDelegate: class {
@@ -25,6 +24,7 @@ class ImageOverlayView: AgrumeOverlayView {
     @IBOutlet weak var text: UILabel!
 
     weak var delegate: ImageOverlayViewDelegate?
+    private var resultItem: ResultItem?
 
     func configure() {
         makeClearMavigationBar(navigationBar: topNavigationBar)
@@ -34,6 +34,7 @@ class ImageOverlayView: AgrumeOverlayView {
     }
 
     func configText(with resultItem: ResultItem) {
+        self.resultItem = resultItem
         text.text = resultItem.title
     }
 
@@ -56,7 +57,9 @@ class ImageOverlayView: AgrumeOverlayView {
     }
 
     @IBAction func tappedOpenLink(_ sender: UIBarButtonItem) {
-        delegate?.overlayView(self, didSelectAction: .openLink)
+        if let url = resultItem?.image.contextLinkURL {
+            UIApplication.shared.open(url)
+        }
     }
 
     func createAgrumePhotoLibraryHelper(from viewController: UIViewController) -> AgrumePhotoLibraryHelper {

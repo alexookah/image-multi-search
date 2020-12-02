@@ -48,26 +48,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
     func setAgrumeDownloadHandler() {
         AgrumeServiceLocator.shared.setDownloadHandler { url, completion in
 
-            let request = ImageRequest(url: url, processors: [
-                ImageProcessors.Resize(size: self.window?.bounds.size ?? .zero) // resize image for performance improvements
+            let request = ImageRequest(url: url, processors: [  // resize image for performance improvements
+                ImageProcessors.Resize(size: self.window?.bounds.size ?? .zero)
             ])
-
-            let options = ImageLoadingOptions(
-                transition: .fadeIn(duration: 0.33),
-                failureImage: UIImage(systemName: "exclamationmark.triangle"),
-                contentModes: .init(success: .scaleAspectFill, failure: .center, placeholder: .center),
-                tintColors: .init(success: .none, failure: .red, placeholder: .none)
-            )
 
             // Download data, cache it and call the completion with the resulting UIImage
             ImagePipeline.shared.loadData(with: request, completion: { result in
                 switch result {
                 case .success(let data):
-                    completion(UIImage(data: data.data))
+                    if let image = UIImage(data: data.data) {
+                        completion(image)
+                    } else {
+                        completion(nil)
+                    }
                 case .failure(let error):
                     print(error)
                     completion(nil)

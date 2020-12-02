@@ -200,8 +200,8 @@
 				B4F0E1A12576EC250046BD56 /* KeywordsManagerVC */,
 				B4F0E1A22576EC3B0046BD56 /* SearchResultsVC */,
 				B472426E2577BE130031AFFC /* AllResultsVC */,
-				B47242922578070A0031AFFC /* ImageOverlayView.swift */,
 				B472428F257806D90031AFFC /* ImageOverlayView.xib */,
+				B47242922578070A0031AFFC /* ImageOverlayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
