@@ -66,7 +66,6 @@ extension AllImagesVC: CustomFlowLayoutDelegate {
 
         if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
             cell.layoutIfNeeded()
-            cell.image.sizeToFit()
         }
 
         return CGSize(width: desiredWidth, height: scaledHeight)
