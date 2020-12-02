@@ -132,14 +132,14 @@
                             </connections>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="q9p-gc-ECh">
-                            <rect key="frame" x="0.0" y="266" width="375" height="80"/>
+                            <rect key="frame" x="0.0" y="266" width="375" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBl-ab-B2D">
-                                    <rect key="frame" x="135.66666666666666" y="26" width="104" height="37"/>
+                                    <rect key="frame" x="135.66666666666666" y="26" width="104" height="41"/>
                                     <color key="backgroundColor" red="0.0" green="0.36397528649999999" blue="0.55531209709999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                    <inset key="contentEdgeInsets" minX="24" minY="8" maxX="24" maxY="8"/>
+                                    <inset key="contentEdgeInsets" minX="24" minY="10" maxX="24" maxY="10"/>
                                     <state key="normal" title="Search"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

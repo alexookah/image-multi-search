@@ -146,7 +146,7 @@ class SearchResultsVC: UIViewController {
 
     func createSectionFooterLayout() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93),
-                                                             heightDimension: .estimated(40))
+                                                             heightDimension: .estimated(50))
         let layout = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize,
                                                                  elementKind: UICollectionView.elementKindSectionFooter,
                                                                  alignment: .bottom)
