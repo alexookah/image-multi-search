@@ -17,7 +17,7 @@ class SectionHeader: UICollectionReusableView {
     @IBOutlet weak var subtitle: UILabel!
 
     func configWith(keyword: Keyword) {
-        title.text = keyword.searchResult?.sectionTitle?.uppercased()
+        title.text = keyword.text.uppercased()
         let totalResults = keyword.searchResult?.searchInformation.formattedTotalResults
 
         if let totalResults = totalResults {

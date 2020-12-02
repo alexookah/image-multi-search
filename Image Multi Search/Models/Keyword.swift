@@ -93,7 +93,6 @@ class Keyword {
                     print("finished:")
                     self?.apiStatus = .success
                     self?.searchResultStatusPublisher.send(.success)
-                    self?.searchResult?.sectionTitle = text
                 }
             }, receiveValue: { [weak self] searchResult in
                 self?.searchResult = searchResult

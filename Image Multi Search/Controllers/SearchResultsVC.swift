@@ -36,9 +36,14 @@ class SearchResultsVC: UIViewController {
 
         createDataSource()
         createHeaderAndFooter()
-//        createFooter()
 
         loadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? AllImagesVC, let keyword = sender as? Keyword {
+            viewController.keyword = keyword
+        }
     }
 
     func createDataSource() {
@@ -54,17 +59,18 @@ class SearchResultsVC: UIViewController {
 
     func createHeaderAndFooter() {
         dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+
+            guard
+                let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
+                let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
+                let searchResult = keyword.searchResult, searchResult.items.count > 0
+            else { return UICollectionReusableView() }
+
             if kind == UICollectionView.elementKindSectionHeader {
                 guard let header = collectionView
                         .dequeueReusableSupplementaryView(ofKind: kind,
                                                           withReuseIdentifier: SectionHeader.reuseIdentifier,
                                                           for: indexPath) as? SectionHeader  else { return nil }
-
-                guard
-                    let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
-                    let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
-                    let searchResult = keyword.searchResult, searchResult.items.count > 0
-                else { return header }
 
                 header.configWith(keyword: keyword)
                 return header
@@ -72,9 +78,9 @@ class SearchResultsVC: UIViewController {
                 guard let footer = collectionView
                         .dequeueReusableSupplementaryView(ofKind: kind,
                                                           withReuseIdentifier: SectionFooter.reuseIdentifier,
-                                                          for: indexPath) as? SectionFooter
-                else { return nil }
-
+                                                          for: indexPath) as? SectionFooter else { return nil }
+                footer.keyword = keyword
+                footer.searchResultsVCDelegate = self
                 return footer
             }
         }
@@ -144,7 +150,15 @@ class SearchResultsVC: UIViewController {
                                                                  alignment: .bottom)
         return layout
     }
+}
 
+// MARK: SearchResultsVCDelegate
+
+extension SearchResultsVC: SearchResultsVCDelegate {
+
+    func showMoreResults(keyword: Keyword) {
+        performSegue(withIdentifier: "showAllImagesVCSegue", sender: keyword)
+    }
 }
 
 // MARK: UICollectionViewDataSourcePrefetching

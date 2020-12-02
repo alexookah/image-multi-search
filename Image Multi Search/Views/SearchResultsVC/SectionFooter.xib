@@ -27,6 +27,9 @@
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="viewMoreTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ImJ-A2-YkU"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>

@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gmk-Fn-V29">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JoX-XM-DIV">
                                     <size key="itemSize" width="128" height="128"/>
@@ -51,16 +51,16 @@
                         <viewLayoutGuide key="safeArea" id="1hN-5m-hJC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1hN-5m-hJC" firstAttribute="bottom" secondItem="gmk-Fn-V29" secondAttribute="bottom" id="4ng-ud-ofn"/>
                             <constraint firstItem="gmk-Fn-V29" firstAttribute="top" secondItem="HjI-a1-mrN" secondAttribute="top" id="6Gr-eC-ZgM"/>
                             <constraint firstItem="gmk-Fn-V29" firstAttribute="trailing" secondItem="1hN-5m-hJC" secondAttribute="trailing" id="Gbn-Xo-R3d"/>
+                            <constraint firstAttribute="bottom" secondItem="gmk-Fn-V29" secondAttribute="bottom" id="RtI-OD-iIP"/>
                             <constraint firstItem="gmk-Fn-V29" firstAttribute="leading" secondItem="1hN-5m-hJC" secondAttribute="leading" id="v54-YW-ZsI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search Results" id="RZi-s5-c15"/>
                     <connections>
                         <outlet property="collectionView" destination="gmk-Fn-V29" id="2rf-Jl-Pav"/>
-                        <segue destination="IK4-Hb-kCp" kind="show" identifier="showAllResultsVCSegue" id="1Sc-5x-tLG"/>
+                        <segue destination="b5D-Xh-uK5" kind="show" identifier="showAllImagesVCSegue" id="FPr-x5-PCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssg-EE-9xv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,45 +68,36 @@
             <point key="canvasLocation" x="1122.4000000000001" y="85.714285714285722"/>
         </scene>
         <!--BOHO INTERIOR DESIGN-->
-        <scene sceneID="3IO-H9-ZmB">
+        <scene sceneID="Xxu-2b-HB0">
             <objects>
-                <viewController id="IK4-Hb-kCp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="i1g-L7-88k">
+                <collectionViewController id="b5D-Xh-uK5" customClass="AllImagesVC" customModule="Image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="yfg-gE-odN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ttN-Vm-3RE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C7J-Dy-oRv">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="0rE-ct-mCM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ttN-Vm-3RE" firstAttribute="leading" secondItem="0rE-ct-mCM" secondAttribute="leading" id="9Mu-xV-Oy9"/>
-                            <constraint firstItem="ttN-Vm-3RE" firstAttribute="trailing" secondItem="0rE-ct-mCM" secondAttribute="trailing" id="bVC-x1-Rzz"/>
-                            <constraint firstItem="ttN-Vm-3RE" firstAttribute="top" secondItem="i1g-L7-88k" secondAttribute="top" id="pfC-S5-X6w"/>
-                            <constraint firstAttribute="bottom" secondItem="ttN-Vm-3RE" secondAttribute="bottom" id="uuR-Pz-dUG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="BOHO INTERIOR DESIGN" id="Ld2-8i-d7n"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gZT-8j-eMI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cux-Wd-t04">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="b5D-Xh-uK5" id="m2E-Bl-vhg"/>
+                            <outlet property="delegate" destination="b5D-Xh-uK5" id="dYb-wz-NhU"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="BOHO INTERIOR DESIGN" id="Oi4-cS-UYS"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gj2-ds-do6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981.5999999999999" y="85.714285714285722"/>
+            <point key="canvasLocation" x="1961" y="83"/>
         </scene>
         <!--Image Multi Search-->
         <scene sceneID="Rnc-7F-oUQ">
             <objects>
                 <tableViewController id="Gys-Gk-UQu" customClass="KeywordsManagerVC" customModule="Image_Multi_Search" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qxp-YE-Nbo">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qxp-YE-Nbo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -130,6 +121,7 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="lZm-l5-rAw" firstAttribute="centerX" secondItem="Jdr-ay-dic" secondAttribute="centerX" id="6dC-AY-72U"/>
                                 <constraint firstItem="lZm-l5-rAw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jdr-ay-dic" secondAttribute="leading" constant="8" id="Bpl-YH-eZf"/>
@@ -139,6 +131,9 @@
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lZm-l5-rAw" secondAttribute="trailing" constant="8" id="eyb-Rv-7WW"/>
                                 <constraint firstItem="lZm-l5-rAw" firstAttribute="top" secondItem="xJY-kA-4Wc" secondAttribute="bottom" constant="8" id="oTu-3V-Z6b"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Zlc-EM-pLU" appends="YES" id="gQV-lY-ygv"/>
+                            </connections>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="q9p-gc-ECh">
                             <rect key="frame" x="0.0" y="266" width="375" height="80"/>
@@ -162,14 +157,18 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="eBl-ab-B2D" secondAttribute="bottom" constant="16" id="Cjj-OK-i9N"/>
                                 <constraint firstItem="eBl-ab-B2D" firstAttribute="centerX" secondItem="q9p-gc-ECh" secondAttribute="centerX" id="IVv-SE-Ash"/>
                                 <constraint firstItem="eBl-ab-B2D" firstAttribute="top" secondItem="q9p-gc-ECh" secondAttribute="top" constant="26" id="SSb-3h-6O6"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="RIS-2s-ckn" appends="YES" id="qga-LC-1bM"/>
+                            </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="93x-x3-s8c" customClass="KeywordCell" customModule="Image_Multi_Search" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="KeywordCell" id="93x-x3-s8c" customClass="KeywordCell" customModule="Image_Multi_Search" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="188" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93x-x3-s8c" id="euk-So-aZc">
@@ -217,7 +216,6 @@
                         <connections>
                             <outlet property="dataSource" destination="Gys-Gk-UQu" id="C87-0f-zny"/>
                             <outlet property="delegate" destination="Gys-Gk-UQu" id="9mA-dZ-82A"/>
-                            <outletCollection property="gestureRecognizers" destination="66E-Gc-iYf" appends="YES" id="Man-Ro-A5p"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Image Multi Search" id="WBH-jb-z6A">
@@ -237,9 +235,14 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tyx-jA-fra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="66E-Gc-iYf">
+                <tapGestureRecognizer id="Zlc-EM-pLU">
                     <connections>
-                        <action selector="tableViewTapped:" destination="Gys-Gk-UQu" id="Job-8g-Ik3"/>
+                        <action selector="tableViewTapped:" destination="Gys-Gk-UQu" id="raG-e5-VOi"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="RIS-2s-ckn">
+                    <connections>
+                        <action selector="tableViewTapped:" destination="Gys-Gk-UQu" id="WTf-wM-8ZC"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

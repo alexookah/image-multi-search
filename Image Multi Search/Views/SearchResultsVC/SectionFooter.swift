@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol SearchResultsVCDelegate: class {
+    func showMoreResults(keyword: Keyword)
+}
+
 class SectionFooter: UICollectionReusableView {
 
     static let reuseIdentifier = "SectionFooter"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var searchResultsVCDelegate: SearchResultsVCDelegate?
+
+    var keyword: Keyword?
+
+    @IBAction func viewMoreTapped(_ sender: UIButton) {
+        guard let keyword = keyword else { return }
+        searchResultsVCDelegate?.showMoreResults(keyword: keyword)
     }
 
     static func nib() -> UINib {

@@ -11,6 +11,7 @@
 		B404C057257055DD008B76FE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404C056257055DD008B76FE /* SearchResult.swift */; };
 		B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E7F257715D300B6A491 /* PopupVC.swift */; };
 		B43D5E832577169000B6A491 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E822577169000B6A491 /* UIView.swift */; };
+		B43D5E8D25771F0000B6A491 /* AllImagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E8C25771F0000B6A491 /* AllImagesVC.swift */; };
 		B49CEE752575B1560094CEC6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CEE742575B1560094CEC6 /* UserDefaults.swift */; };
 		B4A7845D257026BB007CBB78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845C257026BB007CBB78 /* AppDelegate.swift */; };
 		B4A7845F257026BB007CBB78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845E257026BB007CBB78 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 		B404C056257055DD008B76FE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		B43D5E7F257715D300B6A491 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		B43D5E822577169000B6A491 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		B43D5E8C25771F0000B6A491 /* AllImagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesVC.swift; sourceTree = "<group>"; };
 		B49CEE742575B1560094CEC6 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B4A78459257026BB007CBB78 /* Image Multi Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Multi Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A7845C257026BB007CBB78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				B4A78460257026BB007CBB78 /* KeywordsManagerVC.swift */,
 				B43D5E7F257715D300B6A491 /* PopupVC.swift */,
 				B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */,
+				B43D5E8C25771F0000B6A491 /* AllImagesVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,10 +139,10 @@
 		B4A7845B257026BB007CBB78 /* Image Multi Search */ = {
 			isa = PBXGroup;
 			children = (
-				B404C04D25703C2F008B76FE /* Extensions */,
-				B404C0442570387F008B76FE /* Utilities */,
 				B4A7845C257026BB007CBB78 /* AppDelegate.swift */,
 				B4A7845E257026BB007CBB78 /* SceneDelegate.swift */,
+				B404C04D25703C2F008B76FE /* Extensions */,
+				B404C0442570387F008B76FE /* Utilities */,
 				B4D5FE7625728D800057C141 /* Views */,
 				B404C0422570362E008B76FE /* Models */,
 				B4DF836625751FC500BDF6EC /* ViewModel */,
@@ -320,6 +323,7 @@
 				B4DF836425751FC200BDF6EC /* KeywordsViewModel.swift in Sources */,
 				B4D6C88825741C8F00DAEFC1 /* KeywordCell.swift in Sources */,
 				B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */,
+				B43D5E8D25771F0000B6A491 /* AllImagesVC.swift in Sources */,
 				B404C057257055DD008B76FE /* SearchResult.swift in Sources */,
 				B4A78461257026BB007CBB78 /* KeywordsManagerVC.swift in Sources */,
 				B43D5E832577169000B6A491 /* UIView.swift in Sources */,
@@ -475,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
