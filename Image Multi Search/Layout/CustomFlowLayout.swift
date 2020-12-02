@@ -18,9 +18,11 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
 
     weak var layoutDelegate: CustomFlowLayoutDelegate?
 
-    private let numberOfColumns = 2
+    private var numberOfColumns: Int {
+        return Orientation.isLandscape ? 3 : 2
+    }
     private let cellPadding: CGFloat = 4
-    private let labelHeight: CGFloat = 35
+    private let labelHeight: CGFloat = 16 + 8 + 8
 
     private var cache: [UICollectionViewLayoutAttributes] = []
 
@@ -36,8 +38,13 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return CGSize(width: contentWidth, height: contentHeight)
     }
 
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        cache = []
+    }
+
     override func prepare() {
-        guard cache.isEmpty, let collectionView = collectionView else { return }
+        guard let collectionView = collectionView else { return }
 
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
@@ -70,6 +77,10 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var visibleLayoutAttributes: [UICollectionViewLayoutAttributes] = []
+
+        if cache.isEmpty {
+            self.prepare()
+        }
 
         // Loop through the cache and look for items in the rect
         for attributes in cache {

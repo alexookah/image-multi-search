@@ -23,10 +23,10 @@ class AllImagesVC: UICollectionViewController {
         collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
 
         if let layout = collectionView?.collectionViewLayout as? CustomFlowLayout {
-          layout.layoutDelegate = self
+            layout.layoutDelegate = self
         }
 
-        collectionView?.contentInset = UIEdgeInsets(top: 23, left: 8, bottom: 10, right: 8)
+        collectionView.contentInset = UIEdgeInsets(top: 23, left: 8, bottom: 10, right: 8)
     }
 }
 
@@ -63,6 +63,11 @@ extension AllImagesVC: CustomFlowLayoutDelegate {
 
         let ratio = desiredWidth / image.width
         let scaledHeight = image.height * ratio
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
+            cell.layoutIfNeeded()
+            cell.image.sizeToFit()
+        }
 
         return CGSize(width: desiredWidth, height: scaledHeight)
     }
