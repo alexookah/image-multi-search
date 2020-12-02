@@ -5,9 +5,11 @@
 //  Created by Alexandros Lykesas on 28/11/20.
 //
 
+import UIKit
+
 struct ResultImage: Decodable, Hashable {
-    let width: Int
-    let height: Int
+    let width: CGFloat
+    let height: CGFloat
 
     let thumbnailLink: String
 

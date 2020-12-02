@@ -12,6 +12,9 @@
 		B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E7F257715D300B6A491 /* PopupVC.swift */; };
 		B43D5E832577169000B6A491 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E822577169000B6A491 /* UIView.swift */; };
 		B43D5E8D25771F0000B6A491 /* AllImagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43D5E8C25771F0000B6A491 /* AllImagesVC.swift */; };
+		B47242722577C3300031AFFC /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242712577C3300031AFFC /* CustomFlowLayout.swift */; };
+		B47242782577D38A0031AFFC /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47242762577D38A0031AFFC /* ImageCell.swift */; };
+		B47242792577D38A0031AFFC /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47242772577D38A0031AFFC /* ImageCell.xib */; };
 		B49CEE752575B1560094CEC6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49CEE742575B1560094CEC6 /* UserDefaults.swift */; };
 		B4A7845D257026BB007CBB78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845C257026BB007CBB78 /* AppDelegate.swift */; };
 		B4A7845F257026BB007CBB78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A7845E257026BB007CBB78 /* SceneDelegate.swift */; };
@@ -42,6 +45,9 @@
 		B43D5E7F257715D300B6A491 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		B43D5E822577169000B6A491 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B43D5E8C25771F0000B6A491 /* AllImagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesVC.swift; sourceTree = "<group>"; };
+		B47242712577C3300031AFFC /* CustomFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
+		B47242762577D38A0031AFFC /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		B47242772577D38A0031AFFC /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		B49CEE742575B1560094CEC6 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B4A78459257026BB007CBB78 /* Image Multi Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Multi Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A7845C257026BB007CBB78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +125,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B472426E2577BE130031AFFC /* AllResultsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B47242772577D38A0031AFFC /* ImageCell.xib */,
+				B47242762577D38A0031AFFC /* ImageCell.swift */,
+			);
+			path = AllResultsVC;
+			sourceTree = "<group>";
+		};
+		B47242702577C3200031AFFC /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				B47242712577C3300031AFFC /* CustomFlowLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		B4A78450257026BB007CBB78 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +165,7 @@
 				B4A7845C257026BB007CBB78 /* AppDelegate.swift */,
 				B4A7845E257026BB007CBB78 /* SceneDelegate.swift */,
 				B404C04D25703C2F008B76FE /* Extensions */,
+				B47242702577C3200031AFFC /* Layout */,
 				B404C0442570387F008B76FE /* Utilities */,
 				B4D5FE7625728D800057C141 /* Views */,
 				B404C0422570362E008B76FE /* Models */,
@@ -160,6 +184,7 @@
 			children = (
 				B4F0E1A12576EC250046BD56 /* KeywordsManagerVC */,
 				B4F0E1A22576EC3B0046BD56 /* SearchResultsVC */,
+				B472426E2577BE130031AFFC /* AllResultsVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4F0E1C42576FF530046BD56 /* SectionFooter.xib in Resources */,
+				B47242792577D38A0031AFFC /* ImageCell.xib in Resources */,
 				B4A78469257026BC007CBB78 /* LaunchScreen.storyboard in Resources */,
 				B4A78466257026BC007CBB78 /* Assets.xcassets in Resources */,
 				B4D5FE7C2572CAC90057C141 /* PreviewImageSearchCell.xib in Resources */,
@@ -316,7 +342,9 @@
 				B4D5FE8A2572D3440057C141 /* ResultItem.swift in Sources */,
 				B4DF836125751FA100BDF6EC /* Keyword.swift in Sources */,
 				B4F0E1C32576FF530046BD56 /* SectionFooter.swift in Sources */,
+				B47242722577C3300031AFFC /* CustomFlowLayout.swift in Sources */,
 				B404C04B257038B2008B76FE /* APIService.swift in Sources */,
+				B47242782577D38A0031AFFC /* ImageCell.swift in Sources */,
 				B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */,
 				B43D5E80257715D300B6A491 /* PopupVC.swift in Sources */,
 				B4F0E17125764E890046BD56 /* UIButton.swift in Sources */,
@@ -479,7 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -500,7 +528,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

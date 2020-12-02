@@ -71,7 +71,6 @@ class SearchResultsVC: UIViewController {
                         .dequeueReusableSupplementaryView(ofKind: kind,
                                                           withReuseIdentifier: SectionHeader.reuseIdentifier,
                                                           for: indexPath) as? SectionHeader  else { return nil }
-
                 header.configWith(keyword: keyword)
                 return header
             } else {
