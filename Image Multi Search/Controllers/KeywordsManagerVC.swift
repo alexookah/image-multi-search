@@ -17,6 +17,7 @@ class KeywordsManagerVC: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? SearchResultsVC {
+            keywordsViewModel.removeDuplicateKeywords()
             viewController.keywordsViewModel = keywordsViewModel
         }
     }
@@ -106,7 +107,7 @@ extension KeywordsManagerVC {
 
     private func removeRows(indexPathsToRemove: [IndexPath]) {
         indexPathsToRemove.sorted(by: >).forEach({ self.keywordsViewModel.keywords.remove(at: $0.row) })
-        self.tableView.deleteRows(at: indexPathsToRemove, with: .fade)
+        tableView.deleteRows(at: indexPathsToRemove, with: .fade)
     }
 
     private func addRow() {

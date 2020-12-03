@@ -25,9 +25,6 @@ class AllImagesVC: UICollectionViewController {
 
         navigationItem.title = keyword.text.uppercased()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
 

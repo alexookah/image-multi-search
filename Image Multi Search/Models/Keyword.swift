@@ -61,7 +61,7 @@ class Keyword {
                     self.searchResultStatusPublisher.send(self.apiStatus)
                 }
                 if prev == current && self.apiStatus == .failed {
-                    return false // same keyword allow to continue, because the apiStatus failed
+                    return false // same keyword was re-entered, allow to continue, because the apiStatus failed
                 } else {
                     return prev == current
                 }
