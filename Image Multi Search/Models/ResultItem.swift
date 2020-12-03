@@ -20,5 +20,4 @@ struct ResultItem: Decodable, Hashable {
     var imageUrl: URL? {
         URL(string: link)
     }
-
 }

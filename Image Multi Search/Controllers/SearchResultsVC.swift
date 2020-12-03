@@ -26,6 +26,7 @@ class SearchResultsVC: UIViewController {
 
         collectionView.collectionViewLayout = createCompositionalLayout()
         collectionView.remembersLastFocusedIndexPath = true
+        collectionView.contentInset = UIEdgeInsets(top: 23, left: 0, bottom: 10, right: 0)
 
         collectionView.register(SectionHeader.nib(),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -129,7 +130,6 @@ class SearchResultsVC: UIViewController {
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
 
         layoutSection.orthogonalScrollingBehavior = .groupPaging
-//        layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
 
         let layoutSectionHeader = createSectionHeaderLayout()
         let layoutSectionFooter = createSectionFooterLayout()

@@ -34,9 +34,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gmk-Fn-V29">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JoX-XM-DIV">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="JoX-XM-DIV">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -52,9 +52,9 @@
                         <viewLayoutGuide key="safeArea" id="1hN-5m-hJC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gmk-Fn-V29" firstAttribute="top" secondItem="HjI-a1-mrN" secondAttribute="top" id="6Gr-eC-ZgM"/>
                             <constraint firstItem="gmk-Fn-V29" firstAttribute="trailing" secondItem="1hN-5m-hJC" secondAttribute="trailing" id="Gbn-Xo-R3d"/>
                             <constraint firstAttribute="bottom" secondItem="gmk-Fn-V29" secondAttribute="bottom" id="RtI-OD-iIP"/>
+                            <constraint firstItem="gmk-Fn-V29" firstAttribute="top" secondItem="1hN-5m-hJC" secondAttribute="top" id="cQ2-G7-XXS"/>
                             <constraint firstItem="gmk-Fn-V29" firstAttribute="leading" secondItem="1hN-5m-hJC" secondAttribute="leading" id="v54-YW-ZsI"/>
                         </constraints>
                     </view>

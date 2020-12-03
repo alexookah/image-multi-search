@@ -48,6 +48,7 @@ class ImageOverlayView: AgrumeOverlayView {
         return UINib(nibName: "ImageOverlayView", bundle: nil)
             .instantiate(withOwner: nil, options: nil)[0] as? ImageOverlayView ?? ImageOverlayView()
     }
+
     @IBAction func tappedClose(_ sender: UIBarButtonItem) {
         delegate?.overlayView(self, didSelectAction: .close)
     }
@@ -57,7 +58,7 @@ class ImageOverlayView: AgrumeOverlayView {
     }
 
     @IBAction func tappedOpenLink(_ sender: UIBarButtonItem) {
-        if let url = resultItem?.image?.contextLinkURL {
+        if let url = resultItem?.image.contextLinkURL {
             UIApplication.shared.open(url)
         }
     }

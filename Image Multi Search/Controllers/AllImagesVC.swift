@@ -10,7 +10,7 @@ import Nuke
 import Agrume
 
 protocol PagingItemsReceivedDelegate: AnyObject {
-    func newItemsReceived()
+    func newItemsReceived(_ newSearchResult: SearchResult)
 }
 
 class AllImagesVC: UICollectionViewController {
@@ -72,7 +72,7 @@ extension AllImagesVC {
         overlayView.delegate = self
 
         agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
-                            background: agrumeBackground, overlayView: overlayView)
+                        background: agrumeBackground, overlayView: overlayView)
 
         let helper = overlayView.createAgrumePhotoLibraryHelper(from: self)
         agrume?.onLongPress = helper.makeSaveToLibraryLongPressGesture
@@ -102,9 +102,23 @@ extension AllImagesVC {
 
 extension AllImagesVC: PagingItemsReceivedDelegate {
 
-    func newItemsReceived() {
+    private func calculateIndexPathsToAdd(from newSearchResult: SearchResult) -> [IndexPath]? {
+        guard let keywordSearchResultItems = keyword.searchResult?.items else { return nil }
+        let startIndex = keywordSearchResultItems.count - newSearchResult.items.count
+        let endIndex = startIndex + newSearchResult.items.count
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
+
+    func newItemsReceived(_ newSearchResult: SearchResult) {
+
+        let newIndexPathsToAdd = calculateIndexPathsToAdd(from: newSearchResult)
+
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            if let newIndexPathsToAdd = newIndexPathsToAdd {
+                self.collectionView.insertItems(at: newIndexPathsToAdd)
+            } else {
+                self.collectionView.reloadData()
+            }
         }
     }
 }

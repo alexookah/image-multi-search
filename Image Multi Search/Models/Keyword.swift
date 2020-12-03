@@ -122,7 +122,7 @@ class Keyword {
             searchResult = newSearchResult
         } else {
             searchResult?.items.append(contentsOf: newSearchResult.items)
-            onNewItemsReceivedDelegate?.newItemsReceived()
+            onNewItemsReceivedDelegate?.newItemsReceived(newSearchResult)
         }
     }
 }
