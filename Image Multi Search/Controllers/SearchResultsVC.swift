@@ -123,8 +123,10 @@ class SearchResultsVC: UIViewController {
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
 
+        let estimatedHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 550 : 350
+
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.90),
-                                                     heightDimension: .estimated(350))
+                                                     heightDimension: .estimated(estimatedHeight))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
 
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)

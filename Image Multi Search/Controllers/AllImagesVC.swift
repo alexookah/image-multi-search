@@ -71,7 +71,7 @@ extension AllImagesVC {
         overlayView.configText(with: searchResultItems[indexPath.item])
         overlayView.delegate = self
 
-        agrume = Agrume(urls: allUrls, startIndex: indexPath.item,
+        agrume = Agrume(urls: allUrls, startIndex: indexPath.row,
                         background: agrumeBackground, overlayView: overlayView)
 
         let helper = overlayView.createAgrumePhotoLibraryHelper(from: self)

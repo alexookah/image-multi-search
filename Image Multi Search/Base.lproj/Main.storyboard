@@ -106,7 +106,10 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="xJY-kA-4Wc">
                                     <rect key="frame" x="97.666666666666686" y="8" width="180" height="96"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="180" id="hqc-vI-5xs"/>
+                                        <constraint firstAttribute="width" constant="180" id="hqc-vI-5xs">
+                                            <variation key="widthClass=compact" constant="180"/>
+                                            <variation key="widthClass=regular" constant="260"/>
+                                        </constraint>
                                         <constraint firstAttribute="width" secondItem="xJY-kA-4Wc" secondAttribute="height" multiplier="15:8" id="qGt-g0-G7t"/>
                                     </constraints>
                                 </imageView>

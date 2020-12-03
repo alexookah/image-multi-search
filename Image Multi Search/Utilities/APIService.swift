@@ -46,7 +46,7 @@ class APIService {
             "searchType": searchType,
             "q": queryText,
             "start": String(startIndex + 1),
-            "ImgSize": "IMG_SIZE_MEDIUM"
+            "ImgSize": UIDevice.current.userInterfaceIdiom == .pad ? "IMG_SIZE_MEDIUM" : "IMG_SIZE_SMALL"
         ]
 
         // Build up the URL
