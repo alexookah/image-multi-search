@@ -32,11 +32,15 @@ class Keyword {
     let textPublisher = CurrentValueSubject<String, Never>("")
     let searchResultStatusPublisher = CurrentValueSubject<SearchResultStatus, Never>(.none)
 
+    let startIndexPublisher = CurrentValueSubject<Int, Never>(0)
+    weak var onNewItemsReceivedDelegate: PagingItemsReceivedDelegate?
+
     var subscriptions = Set<AnyCancellable>()
 
     init(text: String) {
         self.text = text
         observeTextChanges()
+        observeStartIndexValues()
     }
 
     deinit {
@@ -66,13 +70,13 @@ class Keyword {
             .receive(on: RunLoop.main)
             .sink { value in
                 print("new query: ", value)
-                self.getSearchResultWith(text: value)
+                self.getSearchResultWith(text: value, startIndex: self.startIndexPublisher.value)
             }
             .store(in: &subscriptions)
     }
 
-    func getSearchResultWith(text: String) {
-        guard let url = APIService.shared.createURL(queryText: text).url else { return }
+    func getSearchResultWith(text: String, startIndex: Int) {
+        guard let url = APIService.shared.createURL(queryText: text, startIndex: startIndex).url else { return }
 
         searchResultStatusPublisher.send(.loading)
 
@@ -95,9 +99,29 @@ class Keyword {
                     self?.searchResultStatusPublisher.send(.success)
                 }
             }, receiveValue: { [weak self] searchResult in
-                self?.searchResult = searchResult
+                self?.handleSearchResults(searchResult)
             })
-            .store(in: &subscriptions)
+            .store(in: &self.subscriptions)
+    }
+
+    func observeStartIndexValues() {
+        startIndexPublisher
+            .filter({ $0 != 0 })
+            .sink(receiveValue: { startIndexValue in
+                print("lets make a new page result")
+                self.getSearchResultWith(text: self.text, startIndex: startIndexValue)
+            })
+            .store(in: &self.subscriptions)
+    }
+
+    // Handle new searchResults, append in searchResultItems for next results
+    private func handleSearchResults(_ newSearchResult: SearchResult) {
+        if searchResult == nil {
+            searchResult = newSearchResult
+        } else {
+            searchResult?.items.append(contentsOf: newSearchResult.items)
+            onNewItemsReceivedDelegate?.newItemsReceived()
+        }
     }
 }
 

@@ -39,12 +39,13 @@ class APIService {
     private let searchEngine = "017901247231445677654:zwad8gw42fj"
     private let searchType = "image"
 
-    func createURL(queryText: String) -> URLComponents {
+    func createURL(queryText: String, startIndex: Int) -> URLComponents {
         let pagingParameters = [
             "key": apikey,
             "cx": searchEngine,
             "searchType": searchType,
             "q": queryText,
+            "start": String(startIndex + 1),
             "ImgSize": "IMG_SIZE_MEDIUM"
         ]
 

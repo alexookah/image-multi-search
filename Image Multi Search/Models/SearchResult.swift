@@ -6,7 +6,7 @@
 //
 
 struct SearchResult: Decodable, Hashable {
-    let items: [ResultItem]
+    var items: [ResultItem]
     let searchInformation: SearchInformation
 }
 

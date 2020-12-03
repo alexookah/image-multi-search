@@ -8,6 +8,10 @@
 import UIKit
 import Agrume
 
+protocol PagingItemsReceivedDelegate: AnyObject {
+    func newItemsReceived()
+}
+
 class AllImagesVC: UICollectionViewController {
 
     var keyword: Keyword!
@@ -16,6 +20,8 @@ class AllImagesVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        keyword.onNewItemsReceivedDelegate = self
 
         navigationItem.title = keyword.text.uppercased()
 
@@ -35,7 +41,7 @@ class AllImagesVC: UICollectionViewController {
 
 // MARK: UICollectionViewDataSource
 
-extension AllImagesVC: ImageOverlayViewDelegate {
+extension AllImagesVC {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return keyword.searchResult?.items.count ?? 0
@@ -85,6 +91,26 @@ extension AllImagesVC: ImageOverlayViewDelegate {
         }
     }
 
+    override func collectionView(_ collectionView: UICollectionView,
+                                 willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1,
+           let totalItems = keyword.searchResult?.items.count {
+            keyword.startIndexPublisher.send(totalItems)
+        }
+    }
+}
+
+extension AllImagesVC: PagingItemsReceivedDelegate {
+
+    func newItemsReceived() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+}
+
+extension AllImagesVC: ImageOverlayViewDelegate {
+
     // Action buttons from AgrumeOverlay
     func overlayView(_ overlayView: ImageOverlayView, didSelectAction action: OverlayViewActions) {
         switch action {
@@ -100,8 +126,9 @@ extension AllImagesVC: ImageOverlayViewDelegate {
             })
         }
     }
-
 }
+
+
 
 // MARK: CustomFlowLayoutDelegate
 
