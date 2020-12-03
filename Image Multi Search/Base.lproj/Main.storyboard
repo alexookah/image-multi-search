@@ -81,6 +81,7 @@
                         <connections>
                             <outlet property="dataSource" destination="b5D-Xh-uK5" id="m2E-Bl-vhg"/>
                             <outlet property="delegate" destination="b5D-Xh-uK5" id="dYb-wz-NhU"/>
+                            <outlet property="prefetchDataSource" destination="b5D-Xh-uK5" id="BBg-vy-zNn"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="BOHO INTERIOR DESIGN" id="Oi4-cS-UYS"/>

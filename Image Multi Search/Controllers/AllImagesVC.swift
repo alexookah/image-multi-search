@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 import Agrume
 
 protocol PagingItemsReceivedDelegate: AnyObject {
@@ -17,6 +18,8 @@ class AllImagesVC: UICollectionViewController {
     var keyword: Keyword!
 
     private var agrume: Agrume?
+
+    let preheater = ImagePreheater()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,5 +148,32 @@ extension AllImagesVC: CustomFlowLayoutDelegate {
         }
 
         return CGSize(width: desiredWidth, height: scaledHeight)
+    }
+}
+
+// MARK: UICollectionViewDataSourcePrefetching
+
+extension AllImagesVC: UICollectionViewDataSourcePrefetching {
+
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.compactMap { keyword.searchResult?.items[$0.row].imageUrl }
+        preheater.startPreheating(with: urls)
+        print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.compactMap { keyword.searchResult?.items[$0.row].imageUrl }
+        preheater.stopPreheating(with: urls)
+        print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
+    }
+
+    private func stringForIndexPaths(_ indexPaths: [IndexPath]) -> String {
+        guard indexPaths.count > 0 else {
+            return "[]"
+        }
+        let items = indexPaths
+            .map { return "\(($0 as NSIndexPath).item)" }
+            .joined(separator: " ")
+        return "[\(items)]"
     }
 }
