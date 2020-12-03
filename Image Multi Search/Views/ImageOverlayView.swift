@@ -57,7 +57,7 @@ class ImageOverlayView: AgrumeOverlayView {
     }
 
     @IBAction func tappedOpenLink(_ sender: UIBarButtonItem) {
-        if let url = resultItem?.image.contextLinkURL {
+        if let url = resultItem?.image?.contextLinkURL {
             UIApplication.shared.open(url)
         }
     }

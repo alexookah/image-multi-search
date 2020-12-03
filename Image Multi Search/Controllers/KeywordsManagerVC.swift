@@ -17,7 +17,6 @@ class KeywordsManagerVC: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? SearchResultsVC {
-            keywordsViewModel.removeDuplicateKeywords()
             viewController.keywordsViewModel = keywordsViewModel
         }
     }

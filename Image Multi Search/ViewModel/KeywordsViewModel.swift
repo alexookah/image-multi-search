@@ -12,7 +12,7 @@ class KeywordsViewModel {
 
     let demoSeachWords = [
         "boho interior design",
-        "animal photography portait",
+        "animal photography portrait",
         "illustration",
         "ui design",
         "fashion photography",
@@ -37,14 +37,5 @@ class KeywordsViewModel {
 
     func generateKeywords(words: [String]) {
         words.forEach({ word in keywords.append(Keyword(text: word)) })
-    }
-
-    func removeDuplicateKeywords() {
-        var alreadyThere = Set<String>()
-        keywords = keywords.compactMap { keyword -> Keyword? in
-            guard !alreadyThere.contains(keyword.text) else { return nil }
-            alreadyThere.insert(keyword.text)
-            return keyword
-        }
     }
 }
