@@ -15,11 +15,11 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0g-6i-mM0">
-                    <rect key="frame" x="172" y="10.5" width="132" height="41"/>
+                    <rect key="frame" x="195" y="10.5" width="109" height="41"/>
                     <color key="backgroundColor" red="0.0" green="0.36397528649999999" blue="0.55531209709999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <inset key="contentEdgeInsets" minX="24" minY="10" maxX="24" maxY="10"/>
-                    <state key="normal" title="View more">
+                    <state key="normal" title="View all">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
