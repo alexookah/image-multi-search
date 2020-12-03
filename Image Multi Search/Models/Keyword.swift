@@ -107,8 +107,9 @@ class Keyword {
     func observeStartIndexValues() {
         startIndexPublisher
             .filter({ $0 != 0 })
+            .filter({ $0 < 300 }) // filter 300 items for each search
             .sink(receiveValue: { startIndexValue in
-                print("lets make a new page result")
+                print("lets make a new request: ", startIndexValue)
                 self.getSearchResultWith(text: self.text, startIndex: startIndexValue)
             })
             .store(in: &self.subscriptions)

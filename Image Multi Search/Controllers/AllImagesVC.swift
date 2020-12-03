@@ -128,8 +128,6 @@ extension AllImagesVC: ImageOverlayViewDelegate {
     }
 }
 
-
-
 // MARK: CustomFlowLayoutDelegate
 
 extension AllImagesVC: CustomFlowLayoutDelegate {
