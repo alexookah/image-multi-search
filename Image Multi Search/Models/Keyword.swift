@@ -70,6 +70,7 @@ class Keyword {
             .receive(on: RunLoop.main)
             .sink { value in
                 print("new query: ", value)
+                self.searchResult?.items = []
                 self.getSearchResultWith(text: value, startIndex: self.startIndexPublisher.value)
             }
             .store(in: &subscriptions)
