@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SearchResultsVCDelegate: class {
+protocol SearchResultsVCDelegate: AnyObject {
     func showMoreResults(keyword: Keyword)
 }
 

@@ -13,7 +13,7 @@ enum OverlayViewActions {
     case share
 }
 
-protocol ImageOverlayViewDelegate: class {
+protocol ImageOverlayViewDelegate: AnyObject {
     func overlayView(_ overlayView: ImageOverlayView, didSelectAction action: OverlayViewActions)
 }
 

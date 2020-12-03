@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CustomFlowLayoutDelegate: class {
+protocol CustomFlowLayoutDelegate: AnyObject {
 
     // Calculate the image height preserving the aspect's fit ratio image
     func collectionView(_ collectionView: UICollectionView,

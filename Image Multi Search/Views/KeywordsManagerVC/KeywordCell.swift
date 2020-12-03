@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol TapCellDelegate: class {
+protocol TapCellDelegate: AnyObject {
     func addTappedAction()
 }
 
