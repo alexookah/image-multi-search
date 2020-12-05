@@ -18,7 +18,7 @@ class SectionHeader: UICollectionReusableView {
 
     func configWith(keyword: Keyword) {
         title.text = keyword.text.uppercased()
-        let totalResults = keyword.searchResult?.searchInformation.formattedTotalResults
+        let totalResults = keyword.searchResult?.total.description
 
         if let totalResults = totalResults {
             subtitle.text = "total results: " + totalResults.replacingOccurrences(of: ",", with: ".")

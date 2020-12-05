@@ -35,7 +35,7 @@ class ImageOverlayView: AgrumeOverlayView {
 
     func configText(with resultItem: ResultItem) {
         self.resultItem = resultItem
-        text.text = resultItem.title
+        text.text = resultItem.description ?? resultItem.altDescription
     }
 
     func makeClearMavigationBar(navigationBar: UINavigationBar) {
@@ -58,7 +58,7 @@ class ImageOverlayView: AgrumeOverlayView {
     }
 
     @IBAction func tappedOpenLink(_ sender: UIBarButtonItem) {
-        if let url = resultItem?.image.contextLinkURL {
+        if let url = resultItem?.link.htmlUrl {
             UIApplication.shared.open(url)
         }
     }

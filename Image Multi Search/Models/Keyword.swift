@@ -32,7 +32,7 @@ class Keyword {
     let textPublisher = CurrentValueSubject<String, Never>("")
     let searchResultStatusPublisher = CurrentValueSubject<SearchResultStatus, Never>(.none)
 
-    let startIndexPublisher = CurrentValueSubject<Int, Never>(0)
+    let pageNumberPublisher = CurrentValueSubject<Int, Never>(0)
     weak var onNewItemsReceivedDelegate: PagingItemsReceivedDelegate?
 
     var subscriptions = Set<AnyCancellable>()
@@ -40,7 +40,7 @@ class Keyword {
     init(text: String) {
         self.text = text
         observeTextChanges()
-        observeStartIndexValues()
+        observePageNumberValues()
     }
 
     deinit {
@@ -70,15 +70,15 @@ class Keyword {
             .receive(on: RunLoop.main)
             .sink { value in
                 print("new query: ", value)
-                self.searchResult?.items = []
-                self.getSearchResultWith(text: value, startIndex: self.startIndexPublisher.value)
+                self.searchResult?.results = []
+                self.getSearchResultWith(text: value, pageNumber: self.pageNumberPublisher.value)
             }
             .store(in: &subscriptions)
     }
 
-    func getSearchResultWith(text: String, startIndex: Int) {
-        guard let url = APIService.shared.createURL(queryText: text, startIndex: startIndex).url else { return }
-
+    func getSearchResultWith(text: String, pageNumber: Int) {
+        guard let url = APIService.shared.createURL(queryText: text, pageNumber: pageNumber).url else { return }
+        print(url)
         searchResultStatusPublisher.send(.loading)
 
         APIService.shared.request(url: url)
@@ -105,13 +105,13 @@ class Keyword {
             .store(in: &self.subscriptions)
     }
 
-    func observeStartIndexValues() {
-        startIndexPublisher
+    func observePageNumberValues() {
+        pageNumberPublisher
             .filter({ $0 != 0 })
             .filter({ $0 < 300 }) // filter 300 items for each search
             .sink(receiveValue: { startIndexValue in
                 print("lets make a new request: ", startIndexValue)
-                self.getSearchResultWith(text: self.text, startIndex: startIndexValue)
+                self.getSearchResultWith(text: self.text, pageNumber: startIndexValue)
             })
             .store(in: &self.subscriptions)
     }
@@ -121,7 +121,7 @@ class Keyword {
         if searchResult == nil {
             searchResult = newSearchResult
         } else {
-            searchResult?.items.append(contentsOf: newSearchResult.items)
+            searchResult?.results.append(contentsOf: newSearchResult.results)
             onNewItemsReceivedDelegate?.newItemsReceived(newSearchResult)
         }
     }

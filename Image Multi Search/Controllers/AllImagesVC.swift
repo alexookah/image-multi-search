@@ -44,7 +44,7 @@ class AllImagesVC: UICollectionViewController {
 extension AllImagesVC {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keyword.searchResult?.items.count ?? 0
+        return keyword.searchResult?.results.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView,
@@ -52,7 +52,7 @@ extension AllImagesVC {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier,
                                                           for: indexPath) as? ImageCell,
-            let resultItem = keyword.searchResult?.items[indexPath.item]
+            let resultItem = keyword.searchResult?.results[indexPath.item]
         else { return UICollectionViewCell() }
 
         cell.configWith(resultItem: resultItem)
@@ -60,9 +60,9 @@ extension AllImagesVC {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let searchResultItems = keyword.searchResult?.items else { return }
+        guard let searchResultItems = keyword.searchResult?.results else { return }
 
-        let allUrls = keyword.searchResult?.items.compactMap { $0.imageUrl } ?? []
+        let allUrls = keyword.searchResult?.results.compactMap { $0.urls.imageReguralUrl } ?? []
 
         let agrumeBackground: Background = .blurred(.regular)
 
@@ -94,8 +94,8 @@ extension AllImagesVC {
     override func collectionView(_ collectionView: UICollectionView,
                                  willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1,
-           let totalItems = keyword.searchResult?.items.count {
-            keyword.startIndexPublisher.send(totalItems)
+           let totalItems = keyword.searchResult?.results.count {
+            keyword.pageNumberPublisher.send(totalItems / 10) // each request returns 10 items
         }
     }
 }
@@ -103,9 +103,9 @@ extension AllImagesVC {
 extension AllImagesVC: PagingItemsReceivedDelegate {
 
     private func calculateIndexPathsToAdd(from newSearchResult: SearchResult) -> [IndexPath]? {
-        guard let keywordSearchResultItems = keyword.searchResult?.items else { return nil }
-        let startIndex = keywordSearchResultItems.count - newSearchResult.items.count
-        let endIndex = startIndex + newSearchResult.items.count
+        guard let keywordSearchResultItems = keyword.searchResult?.results else { return nil }
+        let startIndex = keywordSearchResultItems.count - newSearchResult.results.count
+        let endIndex = startIndex + newSearchResult.results.count
         return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
     }
 
@@ -150,7 +150,7 @@ extension AllImagesVC: CustomFlowLayoutDelegate {
                         sizeForImageAtIndexPath indexPath: IndexPath, desiredWidth: CGFloat) -> CGSize {
         guard let searchResult = keyword.searchResult else { return CGSize(width: desiredWidth, height: 90) }
 
-        let image = searchResult.items[indexPath.item].image
+        let image = searchResult.results[indexPath.item]
 
         let ratio = desiredWidth / image.width
         let scaledHeight = image.height * ratio
@@ -168,13 +168,13 @@ extension AllImagesVC: CustomFlowLayoutDelegate {
 extension AllImagesVC: UICollectionViewDataSourcePrefetching {
 
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.compactMap { keyword.searchResult?.items[$0.row].imageUrl }
+        let urls = indexPaths.compactMap { keyword.searchResult?.results[$0.row].urls.imageReguralUrl }
         preheater.startPreheating(with: urls)
         print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.compactMap { keyword.searchResult?.items[$0.row].imageUrl }
+        let urls = indexPaths.compactMap { keyword.searchResult?.results[$0.row].urls.imageReguralUrl }
         preheater.stopPreheating(with: urls)
         print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
     }
