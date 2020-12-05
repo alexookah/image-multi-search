@@ -19,14 +19,14 @@ struct ResultItem: Decodable, Hashable {
 
     let urls: ImageUrls
 
-    let link: ImageLink
+    let links: ImageLinks
 
     private enum CodingKeys: String, CodingKey {
-        case description, altDescription = "alt_description", width, height, urls, link
+        case description, altDescription = "alt_description", width, height, urls, links
     }
 }
 
-struct ImageLink: Decodable, Hashable {
+struct ImageLinks: Decodable, Hashable {
     let html: String
 
     var htmlUrl: URL? {
