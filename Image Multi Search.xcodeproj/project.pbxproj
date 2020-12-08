@@ -30,7 +30,7 @@
 		B4A78469257026BC007CBB78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A78467257026BC007CBB78 /* LaunchScreen.storyboard */; };
 		B4D5FE7B2572CAC90057C141 /* PreviewImageSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */; };
 		B4D5FE7C2572CAC90057C141 /* PreviewImageSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */; };
-		B4D5FE872572D31C0057C141 /* ResultImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE862572D31C0057C141 /* ResultImage.swift */; };
+		B4D5FE872572D31C0057C141 /* ImageUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE862572D31C0057C141 /* ImageUrls.swift */; };
 		B4D5FE8A2572D3440057C141 /* ResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE892572D3440057C141 /* ResultItem.swift */; };
 		B4D5FE9A2572E7C70057C141 /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */; };
 		B4D6C87E2573F8FA00DAEFC1 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B4D6C87D2573F8FA00DAEFC1 /* Nuke */; };
@@ -70,7 +70,7 @@
 		B4A7846A257026BC007CBB78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D5FE792572CAC90057C141 /* PreviewImageSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageSearchCell.swift; sourceTree = "<group>"; };
 		B4D5FE7A2572CAC90057C141 /* PreviewImageSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewImageSearchCell.xib; sourceTree = "<group>"; };
-		B4D5FE862572D31C0057C141 /* ResultImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultImage.swift; sourceTree = "<group>"; };
+		B4D5FE862572D31C0057C141 /* ImageUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrls.swift; sourceTree = "<group>"; };
 		B4D5FE892572D3440057C141 /* ResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultItem.swift; sourceTree = "<group>"; };
 		B4D5FE992572E7C70057C141 /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 		B4D6C88725741C8F00DAEFC1 /* KeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordCell.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			children = (
 				B404C056257055DD008B76FE /* SearchResult.swift */,
 				B4D5FE892572D3440057C141 /* ResultItem.swift */,
-				B4D5FE862572D31C0057C141 /* ResultImage.swift */,
+				B4D5FE862572D31C0057C141 /* ImageUrls.swift */,
 				B4DF836025751FA100BDF6EC /* Keyword.swift */,
 			);
 			path = Models;
@@ -246,7 +246,8 @@
 				B4A78456257026BB007CBB78 /* Frameworks */,
 				B4A78457257026BB007CBB78 /* Resources */,
 				B4D6C85E2573955700DAEFC1 /* Swiftlint */,
-				B4F0E1852576BA0A0046BD56 /* ShellScript */,
+				B4F0E1852576BA0A0046BD56 /* Copy Google API key to Bundle */,
+				B4E7F3AB257BA191009FE7FC /* Copy Unsplash API key to Bundle */,
 			);
 			buildRules = (
 			);
@@ -335,7 +336,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		B4F0E1852576BA0A0046BD56 /* ShellScript */ = {
+		B4E7F3AB257BA191009FE7FC /* Copy Unsplash API key to Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,6 +345,25 @@
 			);
 			inputPaths = (
 			);
+			name = "Copy Unsplash API key to Bundle";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PLIST_FILE=\"UnsplashCustomSearch-Info.plist\"\nPLIST_PATH=\"${PROJECT_DIR}/${PLIST_FILE}\"\ncp \"${PLIST_PATH}\" \"${CONFIGURATION_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/UnsplashCustomSearch-Info.plist\"\n";
+		};
+		B4F0E1852576BA0A0046BD56 /* Copy Google API key to Bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Google API key to Bundle";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -383,7 +403,7 @@
 				B4A7845F257026BB007CBB78 /* SceneDelegate.swift in Sources */,
 				B49CEE752575B1560094CEC6 /* UserDefaults.swift in Sources */,
 				B472427E2577ED3B0031AFFC /* Orientation.swift in Sources */,
-				B4D5FE872572D31C0057C141 /* ResultImage.swift in Sources */,
+				B4D5FE872572D31C0057C141 /* ImageUrls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -550,7 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = JBF2VBD96C;
 				INFOPLIST_FILE = "$(SRCROOT)/Image Multi Search/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

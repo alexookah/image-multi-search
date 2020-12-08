@@ -22,8 +22,8 @@ class ImageCell: UICollectionViewCell {
     }
 
     func configWith(resultItem: ResultItem) {
-        title.text = resultItem.title
-        guard let imageURl = resultItem.imageUrl else { return }
+        title.text = resultItem.description ?? resultItem.altDescription
+        guard let imageURl = resultItem.urls.imageReguralUrl else { return }
         activityIndicator.startAnimating()
 
         let request = ImageRequest(url: imageURl, processors: [

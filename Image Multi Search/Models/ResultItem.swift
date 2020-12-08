@@ -10,14 +10,26 @@ import UIKit
 struct ResultItem: Decodable, Hashable {
 
     let uuid = UUID()
-    private enum CodingKeys: String, CodingKey { case title, displayLink, image, link }
 
-    let title: String
-    let displayLink: String
-    let image: ResultImage
-    let link: String
+    let description: String?
+    let altDescription: String?
 
-    var imageUrl: URL? {
-        URL(string: link)
+    let width: CGFloat
+    let height: CGFloat
+
+    let urls: ImageUrls
+
+    let links: ImageLinks
+
+    private enum CodingKeys: String, CodingKey {
+        case description, altDescription = "alt_description", width, height, urls, links
+    }
+}
+
+struct ImageLinks: Decodable, Hashable {
+    let html: String
+
+    var htmlUrl: URL? {
+        URL(string: html)
     }
 }

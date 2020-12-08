@@ -68,7 +68,7 @@ class SearchResultsVC: UIViewController {
             guard
                 let firstKeyword = self?.dataSource?.itemIdentifier(for: indexPath),
                 let keyword = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstKeyword),
-                let searchResult = keyword.searchResult, searchResult.items.count > 0
+                let searchResult = keyword.searchResult, searchResult.results.count > 0
             else { return UICollectionReusableView() }
 
             if kind == UICollectionView.elementKindSectionHeader {
@@ -96,7 +96,7 @@ class SearchResultsVC: UIViewController {
         snapshot.appendSections(keywordsViewModel.keywords)
 
         for keyword in keywordsViewModel.keywords {
-            guard let searchResultItems = keyword.searchResult?.items else { continue }
+            guard let searchResultItems = keyword.searchResult?.results else { continue }
             snapshot.appendItems(searchResultItems, toSection: keyword)
         }
 
@@ -105,7 +105,7 @@ class SearchResultsVC: UIViewController {
 
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            guard let searchResultItems = self.keywordsViewModel.keywords[sectionIndex].searchResult?.items,
+            guard let searchResultItems = self.keywordsViewModel.keywords[sectionIndex].searchResult?.results,
                   !searchResultItems.isEmpty else { return nil}
             return self.createImageResultsSection(using: self.keywordsViewModel.keywords[sectionIndex])
         }
@@ -165,9 +165,10 @@ class SearchResultsVC: UIViewController {
 extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, ImageOverlayViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let searchResultItems = keywordsViewModel.keywords[indexPath.section].searchResult?.items else { return }
+        guard let searchResultItems = keywordsViewModel.keywords[indexPath.section]
+                .searchResult?.results else { return }
 
-        let allUrls = searchResultItems.compactMap { $0.imageUrl }
+        let allUrls = searchResultItems.compactMap { $0.urls.imageReguralUrl }
 
         let agrumeBackground: Background = .blurred(.regular)
 
@@ -222,13 +223,15 @@ extension SearchResultsVC: UICollectionViewDelegate, SearchResultsVCDelegate, Im
 extension SearchResultsVC: UICollectionViewDataSourcePrefetching {
 
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.compactMap { keywordsViewModel.keywords[$0.section].searchResult?.items[$0.row].imageUrl }
+        let urls = indexPaths.compactMap {
+            keywordsViewModel.keywords[$0.section].searchResult?.results[$0.row].urls.imageReguralUrl }
         preheater.startPreheating(with: urls)
         print("prefetchItemsAt: \(stringForIndexPaths(indexPaths))")
     }
 
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        let urls = indexPaths.compactMap { keywordsViewModel.keywords[$0.section].searchResult?.items[$0.row].imageUrl }
+        let urls = indexPaths.compactMap {
+            keywordsViewModel.keywords[$0.section].searchResult?.results[$0.row].urls.imageReguralUrl }
         preheater.stopPreheating(with: urls)
         print("cancelPrefetchingForItemsAt: \(stringForIndexPaths(indexPaths))")
     }

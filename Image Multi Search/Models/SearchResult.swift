@@ -6,11 +6,11 @@
 //
 
 struct SearchResult: Decodable, Hashable {
-    var items: [ResultItem]
-    let searchInformation: SearchInformation
-}
+    var results: [ResultItem]
+    let total: Int
+    let totalPages: Int
 
-struct SearchInformation: Decodable, Hashable {
-    var formattedSearchTime: String
-    var formattedTotalResults: String
+    private enum CodingKeys: String, CodingKey {
+        case results, total, totalPages = "total_pages"
+    }
 }

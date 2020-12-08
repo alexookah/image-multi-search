@@ -22,31 +22,25 @@ class APIService {
 
     private let urlSession = URLSession.shared
 
-    let baseURLString = "https://www.googleapis.com/customsearch/v1"
+    let baseURLString = "https://api.unsplash.com/search/photos"
 
-    private var apikey: String {
-        guard let filePath = Bundle.main.path(forResource: "GoogleCustomSearch-Info", ofType: "plist") else {
-          fatalError("Couldn't find file 'GoogleCustomSearch-Info.plist'.")
+    private var apiKey: String {
+        guard let filePath = Bundle.main.path(forResource: "UnsplashCustomSearch-Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'UnsplashCustomSearch-Info.plist'.")
         }
 
         let plist = NSDictionary(contentsOfFile: filePath)
         guard let value = plist?.object(forKey: "API_KEY") as? String else {
-          fatalError("Couldn't find key 'API_KEY' in 'CustomGoogleSearch-Info.plist'.")
+          fatalError("Couldn't find key 'API_KEY' in 'UnsplashCustomSearch-Info.plist'.")
         }
         return value
     }
 
-    private let searchEngine = "017901247231445677654:zwad8gw42fj"
-    private let searchType = "image"
-
-    func createURL(queryText: String, startIndex: Int) -> URLComponents {
+    func createURL(queryText: String, pageNumber: Int) -> URLComponents {
         let pagingParameters = [
-            "key": apikey,
-            "cx": searchEngine,
-            "searchType": searchType,
-            "q": queryText,
-            "start": String(startIndex + 1),
-            "ImgSize": UIDevice.current.userInterfaceIdiom == .pad ? "IMG_SIZE_LARGE" : "IMG_SIZE_SMALL"
+            "client_id": apiKey,
+            "query": queryText,
+            "page": String(pageNumber)
         ]
 
         // Build up the URL
